@@ -1,103 +1,347 @@
 [
-  { "title": "Rashomon", "year": 1951, "imdbId": "tt0042876" },
-  { "title": "Forbidden Games", "year": 1952, "imdbId": "tt0044716" },
-  { "title": "No Way Back", "year": 1953, "imdbId": "tt0045985" },
-  { "title": "Romeo and Juliet", "year": 1954, "imdbId": "tt0047434" },
-  { "title": "Ordet", "year": 1955, "imdbId": "tt0048544" },
-  { "title": "Somebody Up There Likes Me", "year": 1956, "imdbId": "tt0049821" },
-  { "title": "Le notti bianche", "year": 1957, "imdbId": "tt0050677" },
-  { "title": "The Key", "year": 1958, "imdbId": "tt0051816" },
-  { "title": "Il Generale Della Rovere", "year": 1959, "imdbId": "tt0052896" },
-  { "title": "Le Passage du Rhin", "year": 1960, "imdbId": "tt0054162" },
-  { "title": "Last Year at Marienbad", "year": 1961, "imdbId": "tt0054632" },
-  { "title": "Ivan's Childhood", "year": 1962, "imdbId": "tt0056206" },
-  { "title": "Hands Over the City", "year": 1963, "imdbId": "tt0057126" },
-  { "title": "The Red Desert", "year": 1964, "imdbId": "tt0058095" },
-  { "title": "Sandra", "year": 1965, "imdbId": "tt0059684" },
-  { "title": "The Battle of Algiers", "year": 1966, "imdbId": "tt0058946" },
-  { "title": "Belle de Jour", "year": 1967, "imdbId": "tt0061395" },
-  { "title": "The Fixer", "year": 1968, "imdbId": "tt0063087" },
-  { "title": "Z", "year": 1969, "imdbId": "tt0065507" },
-  { "title": "Investigation of a Citizen Above Suspicion", "year": 1970, "imdbId": "tt0065827" },
-  { "title": "The Garden of the Finzi-Continis", "year": 1971, "imdbId": "tt0067163" },
-  { "title": "Working Class Goes to Heaven", "year": 1972, "imdbId": "tt0069555" },
-  { "title": "Aguirre, the Wrath of God", "year": 1973, "imdbId": "tt0068182" },
-  { "title": "The Spider's Stratagem", "year": 1974, "imdbId": "tt0064959" },
-  { "title": "Sandakan No. 8", "year": 1975, "imdbId": "tt0073542" },
-  { "title": "The Desert of the Tartars", "year": 1976, "imdbId": "tt0074466" },
-  { "title": "A General of the Army", "year": 1977, "imdbId": "tt0076012" },
-  { "title": "The Deer Hunter", "year": 1978, "imdbId": "tt0077416" },
-  { "title": "The Great Santini", "year": 1979, "imdbId": "tt0079239" },
-  { "title": "Atlantic City", "year": 1980, "imdbId": "tt0080060" },
-  { "title": "The German Sisters", "year": 1981, "imdbId": "tt0082337" },
-  { "title": "The State of Things", "year": 1982, "imdbId": "tt0084640" },
-  { "title": "First Name: Carmen", "year": 1983, "imdbId": "tt0085438" },
-  { "title": "Year of the Quiet Sun", "year": 1984, "imdbId": "tt0088312" },
-  { "title": "Agnes of God", "year": 1985, "imdbId": "tt0088666" },
-  { "title": "Il Camorrista", "year": 1986, "imdbId": "tt0090732" },
-  { "title": "Au Revoir les Enfants", "year": 1987, "imdbId": "tt0092593" },
-  { "title": "The Legend of the Holy Drinker", "year": 1988, "imdbId": "tt0095556" },
-  { "title": "City of Sadness", "year": 1989, "imdbId": "tt0097234" },
-  { "title": "Rosencrantz and Guildenstern Are Dead", "year": 1990, "imdbId": "tt0100519" },
-  { "title": "Urga", "year": 1991, "imdbId": "tt0103008" },
-  { "title": "The Story of Qiu Ju", "year": 1992, "imdbId": "tt0105417" },
-  { "title": "Short Cuts", "year": 1993, "imdbId": "tt0108122" },
-  { "title": "Three Colors: Blue", "year": 1993, "imdbId": "tt0108394" },
-  { "title": "Before the Rain", "year": 1994, "imdbId": "tt0110882" },
-  { "title": "Cyclo", "year": 1995, "imdbId": "tt0112857" },
-  { "title": "Michael Collins", "year": 1996, "imdbId": "tt0116956" },
-  { "title": "Hana-bi", "year": 1997, "imdbId": "tt0119250" },
-  { "title": "The Way We Laughed", "year": 1998, "imdbId": "tt0164108" },
-  { "title": "Not One Less", "year": 1999, "imdbId": "tt0209189" },
-  { "title": "The Circle", "year": 2000, "imdbId": "tt0245574" },
-  { "title": "Monsoon Wedding", "year": 2001, "imdbId": "tt0265343" },
-  { "title": "The Magdalene Sisters", "year": 2002, "imdbId": "tt0318411" },
-  { "title": "The Return", "year": 2003, "imdbId": "tt0376994" },
-  { "title": "Vera Drake", "year": 2004, "imdbId": "tt0383694" },
-  { "title": "Brokeback Mountain", "year": 2005, "imdbId": "tt0388795" },
-  { "title": "Still Life", "year": 2006, "imdbId": "tt0799773" },
-  { "title": "Lust, Caution", "year": 2007, "imdbId": "tt0808357" },
-  { "title": "The Wrestler", "year": 2008, "imdbId": "tt1125849" },
-  { "title": "Lebanon", "year": 2009, "imdbId": "tt1483516" },
-  { "title": "Somewhere", "year": 2010, "imdbId": "tt1421051" },
-  { "title": "Faust", "year": 2011, "imdbId": "tt1816518" },
-  { "title": "Pieta", "year": 2012, "imdbId": "tt2378465" },
-  { "title": "Gravity", "year": 2013, "imdbId": "tt1454468" },
-  { "title": "A Pigeon Sat on a Branch Reflecting on Existence", "year": 2014, "imdbId": "tt3614070" },
-  { "title": "From Afar", "year": 2015, "imdbId": "tt4375958" },
-  { "title": "The Woman Who Left", "year": 2016, "imdbId": "tt5608114" },
-  { "title": "The Shape of Water", "year": 2017, "imdbId": "tt5580390" },
-  { "title": "Roma", "year": 2018, "imdbId": "tt6155172" },
-  { "title": "Joker", "year": 2019, "imdbId": "tt7286456" },
-  { "title": "Nomadland", "year": 2020, "imdbId": "tt9770150" },
-  { "title": "The Power of the Dog", "year": 2021, "imdbId": "tt10293406" },
-  { "title": "All Quiet on the Western Front", "year": 2022, "imdbId": "tt1016150" },
-  { "title": "Poor Things", "year": 2023, "imdbId": "tt14230458" },
-  { "title": "The Room Next Door", "year": 2024, "imdbId": "tt28827953" },
-  { "title": "Sansho the Bailiff", "year": 1954, "imdbId": "tt0047445" },
-  { "title": "Before the Revolution", "year": 1964, "imdbId": "tt0056371" },
-  { "title": "The Conformist", "year": 1970, "imdbId": "tt0065571" },
-  { "title": "The Passenger", "year": 1975, "imdbId": "tt0073580" },
-  { "title": "Three Brothers", "year": 1981, "imdbId": "tt0083426" },
-  { "title": "Come and See", "year": 1985, "imdbId": "tt0091251" },
-  { "title": "The Sacrifice", "year": 1986, "imdbId": "tt0091670" },
-  { "title": "Beware of a Holy Whore", "year": 1971, "imdbId": "tt0067031" },
-  { "title": "Loulou", "year": 1980, "imdbId": "tt0081183" },
-  { "title": "Kings of the Road", "year": 1976, "imdbId": "tt0074512" },
-  { "title": "The American Friend", "year": 1977, "imdbId": "tt0075576" },
-  { "title": "Paris, Texas", "year": 1984, "imdbId": "tt0087884" },
-  { "title": "The Green Ray", "year": 1986, "imdbId": "tt0091244" },
-  { "title": "Wings of Desire", "year": 1987, "imdbId": "tt0093191" },
-  { "title": "Europa", "year": 1991, "imdbId": "tt0101829" },
-  { "title": "The Piano", "year": 1993, "imdbId": "tt0107822" },
-  { "title": "Secrets and Lies", "year": 1996, "imdbId": "tt0117589" },
-  { "title": "Taste of Cherry", "year": 1997, "imdbId": "tt0120265" },
-  { "title": "Rosetta", "year": 1999, "imdbId": "tt0200071" },
-  { "title": "Son of Saul", "year": 2015, "imdbId": "tt3808342" },
-  { "title": "Moonlight", "year": 2016, "imdbId": "tt4975722" },
-  { "title": "Portrait of a Lady on Fire", "year": 2019, "imdbId": "tt8613070" },
-  { "title": "Never Rarely Sometimes Always", "year": 2020, "imdbId": "tt7772582" },
-  { "title": "Memoria", "year": 2021, "imdbId": "tt9199942" },
-  { "title": "Saint Omer", "year": 2022, "imdbId": "tt20900568" },
-  { "title": "Past Lives", "year": 2023, "imdbId": "tt21082852" }
+  {
+    "title": "Manon",
+    "year": 1949,
+    "imdbId": "tt0041634"
+  },
+  {
+    "title": "Justice Is Done",
+    "year": 1950,
+    "imdbId": "tt0042625"
+  },
+  {
+    "title": "Rashomon",
+    "year": 1951,
+    "imdbId": "tt0042876"
+  },
+  {
+    "title": "Forbidden Games",
+    "year": 1952,
+    "imdbId": "tt0043686"
+  },
+  {
+    "title": "Romeo and Juliet",
+    "year": 1954,
+    "imdbId": "tt0047029"
+  },
+  {
+    "title": "Ordet",
+    "year": 1955,
+    "imdbId": "tt0048452"
+  },
+  {
+    "title": "Aparajito",
+    "year": 1957,
+    "imdbId": "tt0048956"
+  },
+  {
+    "title": "The Rickshaw Man",
+    "year": 1958,
+    "imdbId": "tt0051955"
+  },
+  {
+    "title": "General Della Rovere",
+    "year": 1959,
+    "imdbId": "tt0053856"
+  },
+  {
+    "title": "The Great War",
+    "year": 1959,
+    "imdbId": "tt0052861"
+  },
+  {
+    "title": "Le Passage du Rhin",
+    "year": 1960,
+    "imdbId": "tt0054161"
+  },
+  {
+    "title": "Last Year at Marienbad",
+    "year": 1961,
+    "imdbId": "tt0054632"
+  },
+  {
+    "title": "Ivan's Childhood",
+    "year": 1962,
+    "imdbId": "tt0056111"
+  },
+  {
+    "title": "Family Diary",
+    "year": 1962,
+    "imdbId": "tt0056966"
+  },
+  {
+    "title": "Hands Over the City",
+    "year": 1963,
+    "imdbId": "tt0057286"
+  },
+  {
+    "title": "Red Desert",
+    "year": 1964,
+    "imdbId": "tt0058003"
+  },
+  {
+    "title": "Sandra",
+    "year": 1965,
+    "imdbId": "tt0059856"
+  },
+  {
+    "title": "The Battle of Algiers",
+    "year": 1966,
+    "imdbId": "tt0058946"
+  },
+  {
+    "title": "Belle de Jour",
+    "year": 1967,
+    "imdbId": "tt0061395"
+  },
+  {
+    "title": "Artists Under the Big Top: Perplexed",
+    "year": 1968,
+    "imdbId": "tt0062679"
+  },
+  {
+    "title": "Atlantic City",
+    "year": 1980,
+    "imdbId": "tt0080388"
+  },
+  {
+    "title": "Gloria",
+    "year": 1980,
+    "imdbId": "tt0080798"
+  },
+  {
+    "title": "The German Sisters",
+    "year": 1981,
+    "imdbId": "tt0082081"
+  },
+  {
+    "title": "The State of Things",
+    "year": 1982,
+    "imdbId": "tt0084725"
+  },
+  {
+    "title": "First Name: Carmen",
+    "year": 1983,
+    "imdbId": "tt0086153"
+  },
+  {
+    "title": "A Year of the Quiet Sun",
+    "year": 1984,
+    "imdbId": "tt0088009"
+  },
+  {
+    "title": "Vagabond",
+    "year": 1985,
+    "imdbId": "tt0089960"
+  },
+  {
+    "title": "The Green Ray",
+    "year": 1986,
+    "imdbId": "tt0091830"
+  },
+  {
+    "title": "Au Revoir les Enfants",
+    "year": 1987,
+    "imdbId": "tt0092593"
+  },
+  {
+    "title": "The Legend of the Holy Drinker",
+    "year": 1988,
+    "imdbId": "tt0095513"
+  },
+  {
+    "title": "A City of Sadness",
+    "year": 1989,
+    "imdbId": "tt0096908"
+  },
+  {
+    "title": "Rosencrantz and Guildenstern Are Dead",
+    "year": 1990,
+    "imdbId": "tt0100519"
+  },
+  {
+    "title": "Close to Eden",
+    "year": 1991,
+    "imdbId": "tt0103176"
+  },
+  {
+    "title": "The Story of Qiu Ju",
+    "year": 1992,
+    "imdbId": "tt0105197"
+  },
+  {
+    "title": "Short Cuts",
+    "year": 1993,
+    "imdbId": "tt0108122"
+  },
+  {
+    "title": "Three Colors: Blue",
+    "year": 1993,
+    "imdbId": "tt0108394"
+  },
+  {
+    "title": "Before the Rain",
+    "year": 1994,
+    "imdbId": "tt0110882"
+  },
+  {
+    "title": "Vive L'Amour",
+    "year": 1994,
+    "imdbId": "tt0109066"
+  },
+  {
+    "title": "Cyclo",
+    "year": 1995,
+    "imdbId": "tt0112767"
+  },
+  {
+    "title": "Michael Collins",
+    "year": 1996,
+    "imdbId": "tt0117039"
+  },
+  {
+    "title": "Hana-bi",
+    "year": 1997,
+    "imdbId": "tt0119250"
+  },
+  {
+    "title": "The Way We Laughed",
+    "year": 1998,
+    "imdbId": "tt0139951"
+  },
+  {
+    "title": "Not One Less",
+    "year": 1999,
+    "imdbId": "tt0209189"
+  },
+  {
+    "title": "The Circle",
+    "year": 2000,
+    "imdbId": "tt0255094"
+  },
+  {
+    "title": "Monsoon Wedding",
+    "year": 2001,
+    "imdbId": "tt0265343"
+  },
+  {
+    "title": "The Magdalene Sisters",
+    "year": 2002,
+    "imdbId": "tt0318411"
+  },
+  {
+    "title": "The Return",
+    "year": 2003,
+    "imdbId": "tt0376968"
+  },
+  {
+    "title": "Vera Drake",
+    "year": 2004,
+    "imdbId": "tt0383694"
+  },
+  {
+    "title": "Brokeback Mountain",
+    "year": 2005,
+    "imdbId": "tt0388795"
+  },
+  {
+    "title": "Still Life",
+    "year": 2006,
+    "imdbId": "tt0859765"
+  },
+  {
+    "title": "Lust, Caution",
+    "year": 2007,
+    "imdbId": "tt0808357"
+  },
+  {
+    "title": "The Wrestler",
+    "year": 2008,
+    "imdbId": "tt1125849"
+  },
+  {
+    "title": "Lebanon",
+    "year": 2009,
+    "imdbId": "tt1483831"
+  },
+  {
+    "title": "Somewhere",
+    "year": 2010,
+    "imdbId": "tt1421051"
+  },
+  {
+    "title": "Faust",
+    "year": 2011,
+    "imdbId": "tt1437357"
+  },
+  {
+    "title": "Pieta",
+    "year": 2012,
+    "imdbId": "tt2299842"
+  },
+  {
+    "title": "Sacro GRA",
+    "year": 2013,
+    "imdbId": "tt3172520"
+  },
+  {
+    "title": "A Pigeon Sat on a Branch Reflecting on Existence",
+    "year": 2014,
+    "imdbId": "tt1883180"
+  },
+  {
+    "title": "From Afar",
+    "year": 2015,
+    "imdbId": "tt4721400"
+  },
+  {
+    "title": "The Woman Who Left",
+    "year": 2016,
+    "imdbId": "tt5843990"
+  },
+  {
+    "title": "The Shape of Water",
+    "year": 2017,
+    "imdbId": "tt5580390"
+  },
+  {
+    "title": "Roma",
+    "year": 2018,
+    "imdbId": "tt6155172"
+  },
+  {
+    "title": "Joker",
+    "year": 2019,
+    "imdbId": "tt7286456"
+  },
+  {
+    "title": "Nomadland",
+    "year": 2020,
+    "imdbId": "tt9770150"
+  },
+  {
+    "title": "Happening",
+    "year": 2021,
+    "imdbId": "tt13880104"
+  },
+  {
+    "title": "All the Beauty and the Bloodshed",
+    "year": 2022,
+    "imdbId": "tt21374850"
+  },
+  {
+    "title": "Poor Things",
+    "year": 2023,
+    "imdbId": "tt14230458"
+  },
+  {
+    "title": "The Room Next Door",
+    "year": 2024,
+    "imdbId": "tt29439114"
+  },
+  {
+    "title": "Father Mother Sister Brother",
+    "year": 2025,
+    "imdbId": "tt31189315"
+  }
 ]
