@@ -164,8 +164,9 @@
     color: #000; font-family: 'Comic Sans MS', Verdana; font-size: 14px; font-weight: bold;
     padding: 5px 14px; cursor: pointer;
   }
-  .chip.on { background: #000080; color: #ffff00; border-style: inset; }
-  .chip:hover:not(.on) { background: #d0d0ff; }
+  .chip.sel { background: #000080; color: #ffff00; border-style: inset; }
+  .chip:hover:not(.sel) { background: #d0d0ff; }
+  .chip.sel:hover { background: #0000cc; }
 
   /* ── Botões ──────────────────────────────── */
   .btn-ghost {
@@ -221,9 +222,11 @@
     padding: 7px 10px; cursor: pointer; display: flex; align-items: center; gap: 8px;
     font-size: 14px; color: #000080;
   }
-  .ix-item:hover { background: #e0e0ff; }
+  .ix-item:hover:not(.sel) { background: #d0d0ff; }
   .ix-item input[type="checkbox"] { accent-color: #000080; width: 15px; height: 15px; flex: none; cursor: pointer; }
-  .ix-item.sel { background: #dde8ff; }
+  .ix-item.sel { background: #000080; color: #ffff00; border-style: inset; }
+  .ix-item.sel:hover { background: #0000cc; }
+  .ix-item.sel input[type="checkbox"] { accent-color: #ffff00; }
   .ix-empty { color: #444; font-style: italic; font-size: 14px; padding: 16px; text-align: center; }
 
   /* ── Range ───────────────────────────────── */
@@ -280,7 +283,8 @@
     padding: 10px 12px; cursor: pointer; font-size: 14px;
   }
   .cat-card.sel { background: #000080; border-style: inset; }
-  .cat-card:hover:not(.sel) { background: #e0e0ff; }
+  .cat-card:hover:not(.sel) { background: #d0d0ff; }
+  .cat-card.sel:hover { background: #0000cc; }
   .cat-name { font-weight: bold; color: #000080; font-family: 'Comic Sans MS', Verdana; }
   .cat-card.sel .cat-name { color: #ffff00; }
   .cat-count { color: #444; font-size: 12px; font-family: 'Courier New', monospace; }
@@ -289,8 +293,17 @@
 
   /* ── Excluir filtros ─────────────────────── */
   .exclude-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
-  .exclude-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #000080; cursor: pointer; }
-  .exclude-item input[type=checkbox] { accent-color: #000080; width: 16px; height: 16px; }
+  .exclude-item {
+    background: #ffffff; border: 2px outset #ffffff;
+    border-right-color: #808080; border-bottom-color: #808080;
+    padding: 7px 10px; display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: #000080; cursor: pointer;
+  }
+  .exclude-item:hover:not(.sel) { background: #d0d0ff; }
+  .exclude-item input[type=checkbox] { accent-color: #000080; width: 15px; height: 15px; flex: none; cursor: pointer; }
+  .exclude-item.sel { background: #000080; color: #ffff00; border-style: inset; }
+  .exclude-item.sel:hover { background: #0000cc; }
+  .exclude-item.sel input[type=checkbox] { accent-color: #ffff00; }
 
   /* ── Status dots ─────────────────────────── */
   .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #808080; flex: none; display: inline-block; }
@@ -599,8 +612,8 @@
       <div class="card-titlebar">🎬 Categorias</div>
       <div class="card-body">
         <div class="chip-row" id="cat-chips">
-          <button class="chip on" data-cat="movie">🎬 Filmes</button>
-          <button class="chip on" data-cat="series">📺 Séries</button>
+          <button class="chip sel" data-cat="movie">🎬 Filmes</button>
+          <button class="chip sel" data-cat="series">📺 Séries</button>
           <button class="chip" data-cat="anime">🎌 Anime</button>
         </div>
       </div>
@@ -1097,7 +1110,7 @@ document.getElementById("cat-chips").addEventListener("click", (e) => {
   if (!chip) return;
   const cat = chip.dataset.cat;
   if (state.categories.has(cat)) state.categories.delete(cat); else state.categories.add(cat);
-  chip.classList.toggle("on", state.categories.has(cat));
+  chip.classList.toggle("sel", state.categories.has(cat));
 });
 
 // ── Indexadores ───────────────────────────────────────────
@@ -1124,12 +1137,12 @@ function renderPriorityIndexers() {
   for (const ix of state.indexers) {
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "chip" + (state.priorityIndexers.has(ix.name) ? " on" : "");
+    b.className = "chip" + (state.priorityIndexers.has(ix.name) ? " sel" : "");
     b.textContent = ix.name;
     b.addEventListener("click", () => {
       if (state.priorityIndexers.has(ix.name)) state.priorityIndexers.delete(ix.name);
       else state.priorityIndexers.add(ix.name);
-      b.classList.toggle("on");
+      b.classList.toggle("sel");
     });
     box.appendChild(b);
   }
@@ -1179,12 +1192,12 @@ function renderExcludeFilters() {
   EXCLUDE_FILTER_DEFS.forEach(({ key, label }) => {
     const on = state.excludeFilters.has(key);
     const item = document.createElement("label");
-    item.className = "exclude-item" + (on ? " on" : "");
+    item.className = "exclude-item" + (on ? " sel" : "");
     item.innerHTML = `<input type="checkbox" ${on ? "checked" : ""}><span>${label}</span>`;
     item.querySelector("input").addEventListener("change", (e) => {
       if (e.target.checked) state.excludeFilters.add(key);
       else state.excludeFilters.delete(key);
-      item.classList.toggle("on", e.target.checked);
+      item.classList.toggle("sel", e.target.checked);
     });
     grid.appendChild(item);
   });
@@ -1199,7 +1212,7 @@ function renderKeywordChips() {
   PRESET_KEYWORDS.forEach(p => {
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "chip" + (state.keywordBoostOn.has(p.value) ? " on" : "");
+    b.className = "chip" + (state.keywordBoostOn.has(p.value) ? " sel" : "");
     b.textContent = p.label;
     b.addEventListener("click", () => {
       if (state.keywordBoostOn.has(p.value)) state.keywordBoostOn.delete(p.value);
@@ -1433,7 +1446,7 @@ async function loadExistingConfig() {
   } catch {}
 }
 function applyPrefs(p) {
-  if (Array.isArray(p.categories)) { state.categories = new Set(p.categories); document.querySelectorAll("#cat-chips .chip").forEach(c => c.classList.toggle("on", state.categories.has(c.dataset.cat))); }
+  if (Array.isArray(p.categories)) { state.categories = new Set(p.categories); document.querySelectorAll("#cat-chips .chip").forEach(c => c.classList.toggle("sel", state.categories.has(c.dataset.cat))); }
   if (Array.isArray(p.indexers) && !p.indexers.includes("all")) { state.selectedIndexers = new Set(p.indexers); state._indexersPreset = true; }
   if (p.priorityLang !== undefined) document.getElementById("priorityLang").value = p.priorityLang;
   if (p.onlyDubbed) document.getElementById("onlyDubbed").checked = true;
