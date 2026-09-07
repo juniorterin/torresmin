@@ -17,6 +17,9 @@ package-lock.json
 # Artefatos gerados pela auditoria de catálogos (scripts/verifyCatalogs.js)
 scripts/.imdb-cache.json
 scripts/catalog-report.json
+
+# Backups do store gravados por seedCatalogs.js --rebuild
+scripts/catalogs-backup-*.json
 logs/
 
 # Redis data

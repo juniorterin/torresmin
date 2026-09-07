@@ -2,7 +2,7 @@
 require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { createCatalog, addCatalogItem, listCatalogs, getCatalog, replaceCatalogItems } = require("../catalogs");
+const { createCatalog, addCatalogItem, listCatalogs, getCatalog, deleteCatalog, replaceCatalogItems } = require("../catalogs");
 
 // Popula os catálogos curados a partir de scripts/seed-data/<slug>.json. Não é
 // rota HTTP -- roda direto: `node scripts/seedCatalogs.js` (compartilha o mesmo
@@ -12,10 +12,11 @@ const { createCatalog, addCatalogItem, listCatalogs, getCatalog, replaceCatalogI
 // resolvido -- use `node scripts/verifyCatalogs.js` para conferir se cada id
 // aponta mesmo para aquele título/ano antes de semear.
 //
-// DOIS MODOS, e a diferença importa:
+// TRÊS MODOS, e a diferença importa:
 //
 //   node scripts/seedCatalogs.js             (aditivo, padrão)
-//   node scripts/seedCatalogs.js --replace   (espelha o arquivo)
+//   node scripts/seedCatalogs.js --replace   (espelha cada arquivo)
+//   node scripts/seedCatalogs.js --rebuild   (apaga tudo e refaz do zero)
 //
 // O modo aditivo só acrescenta: é idempotente e nunca duplica, mas também
 // nunca corrige nem remove. Um id trocado no arquivo faz o catálogo ficar com
@@ -28,6 +29,17 @@ const { createCatalog, addCatalogItem, listCatalogs, getCatalog, replaceCatalogI
 // existente (a posição na home não muda) e invalida o cache. É destrutivo por
 // definição: o que não estiver no arquivo semente deixa de existir, inclusive
 // itens adicionados à mão pelo /admin.
+//
+// --replace ainda deixa ÓRFÃOS: um catálogo que existe no store mas não está
+// mais no CATALOGS (ou cujo arquivo foi apagado) sobrevive intocado, porque o
+// laço só passa pelo que está declarado aqui. --rebuild resolve isso apagando
+// todos os catálogos antes de recriar, de forma que o store fique sendo
+// exatamente o conjunto de arquivos semente — nada a mais.
+//
+// --rebuild grava um backup do estado atual em scripts/catalogs-backup-<data>.json
+// antes de apagar qualquer coisa. É o modo certo depois de uma rodada grande de
+// correções, quando o store acumulou ids errados e entradas que já não deviam
+// existir.
 
 const SEED_DIR = path.join(__dirname, "seed-data");
 
@@ -36,8 +48,6 @@ const CATALOGS = [
   { slug: "sightsound",                name: "Sight & Sound — Top 100",                    type: "movie" },
   { slug: "sightsound_directors",      name: "Sight & Sound — Directors' Poll",            type: "movie" },
   { slug: "imdbtop250",                name: "IMDb Top 250",                               type: "movie" },
-  { slug: "imdbtop100",                name: "IMDb Top 100",                               type: "movie" },
-  { slug: "imdbtop50",                 name: "IMDb Top 50",                                type: "movie" },
   { slug: "tspdt100",                  name: "TSPDT — 100 Maiores Filmes",                 type: "movie" },
   // ── Criterion ────────────────────────────────────────────────────────────────
   { slug: "criterion",                 name: "Criterion Collection",                       type: "movie" },
@@ -123,7 +133,30 @@ const CATALOGS = [
   { slug: "hidden_gems_world",         name: "Hidden Gems — World Cinema",                 type: "movie" },
 ];
 
-const REPLACE = process.argv.includes("--replace");
+const REBUILD = process.argv.includes("--rebuild");
+// --rebuild implica espelhar cada arquivo; a diferença é o que acontece antes.
+const REPLACE = REBUILD || process.argv.includes("--replace");
+
+// Salva o store inteiro antes de apagar. Passa por listCatalogs em vez de
+// copiar o arquivo, para funcionar igual nos dois backends (arquivo e Postgres).
+async function backupStore() {
+  const all = await listCatalogs();
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+  const file = path.join(__dirname, `catalogs-backup-${stamp}.json`);
+  fs.writeFileSync(file, JSON.stringify(all, null, 2));
+  const itens = all.reduce((n, c) => n + (c.items?.length || 0), 0);
+  console.log(`[seed] backup: ${all.length} catálogos, ${itens} itens -> ${path.basename(file)}`);
+  return all;
+}
+
+// Apaga TUDO que está no store, inclusive catálogo que não consta do CATALOGS
+// — é justamente o que diferencia --rebuild de --replace.
+async function wipeStore(existing) {
+  const orfaos = existing.filter(c => !CATALOGS.some(x => x.slug === c.id)).map(c => c.id);
+  if (orfaos.length) console.log(`[seed] órfãos que serão removidos: ${orfaos.join(", ")}`);
+  for (const c of existing) await deleteCatalog(c.id);
+  console.log(`[seed] store zerado (${existing.length} catálogos apagados)`);
+}
 
 async function replaceCatalog({ slug, name, type }, items) {
   const before = (await getCatalog(slug))?.items?.length ?? 0;
@@ -185,13 +218,23 @@ async function seedCatalog({ slug, name, type }) {
 }
 
 async function main() {
-  console.log(REPLACE
-    ? "[seed] modo --replace: cada catálogo passa a espelhar o arquivo semente (itens fora dele são removidos)"
-    : "[seed] modo aditivo: só acrescenta o que falta — use --replace para corrigir ids trocados ou remover entradas");
+  if (REBUILD) {
+    console.log("[seed] modo --rebuild: o store será apagado e recriado a partir dos arquivos semente");
+    const existing = await backupStore();
+    await wipeStore(existing);
+  } else if (REPLACE) {
+    console.log("[seed] modo --replace: cada catálogo passa a espelhar o arquivo semente (itens fora dele são removidos)");
+  } else {
+    console.log("[seed] modo aditivo: só acrescenta o que falta — use --replace para corrigir ids trocados, ou --rebuild para refazer do zero");
+  }
+
   for (const cat of CATALOGS) {
     await seedCatalog(cat);
   }
-  console.log("[seed] concluído.");
+
+  const final = await listCatalogs();
+  const itens = final.reduce((n, c) => n + (c.items?.length || 0), 0);
+  console.log(`[seed] concluído — store com ${final.length} catálogos e ${itens} itens.`);
   process.exit(0);
 }
 
