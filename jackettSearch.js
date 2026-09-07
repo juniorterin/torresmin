@@ -50,7 +50,14 @@ async function jackettFetchIndexers(url, key) {
       });
       if (res.status < 400 && Array.isArray(res.data)) {
         _setServerType(jUrl, jKey, "prowlarr");
-        return res.data.map(ix => ({ id: String(ix.id || "").trim(), name: String(ix.name || "").trim() })).filter(ix => ix.id);
+        // Só indexador habilitado: sem esse filtro, desabilitar um indexador no
+        // Prowlarr não surtia efeito nenhum aqui — ele continuava sendo
+        // consultado a cada busca, custando o timeout inteiro quando estava fora
+        // do ar. O Torznab do Jackett já filtra por conta própria (configured=true).
+        return res.data
+          .filter(ix => ix.enable !== false)
+          .map(ix => ({ id: String(ix.id || "").trim(), name: String(ix.name || "").trim() }))
+          .filter(ix => ix.id);
       }
     } catch {}
   }
@@ -87,7 +94,14 @@ async function jackettFetchIndexers(url, key) {
       });
       if (res.status < 400 && Array.isArray(res.data)) {
         _setServerType(jUrl, jKey, "prowlarr");
-        return res.data.map(ix => ({ id: String(ix.id || "").trim(), name: String(ix.name || "").trim() })).filter(ix => ix.id);
+        // Só indexador habilitado: sem esse filtro, desabilitar um indexador no
+        // Prowlarr não surtia efeito nenhum aqui — ele continuava sendo
+        // consultado a cada busca, custando o timeout inteiro quando estava fora
+        // do ar. O Torznab do Jackett já filtra por conta própria (configured=true).
+        return res.data
+          .filter(ix => ix.enable !== false)
+          .map(ix => ({ id: String(ix.id || "").trim(), name: String(ix.name || "").trim() }))
+          .filter(ix => ix.id);
       }
     } catch {}
   }

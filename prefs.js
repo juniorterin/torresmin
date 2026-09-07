@@ -99,6 +99,21 @@ function defaultPrefs() {
   };
 }
 
+// 8000 era o padrão antigo e ficou gravado em toda config salva, porque o
+// controle não existia na interface — ninguém chegou a escolher esse valor.
+// Medindo os indexadores, nenhum além do 1337x passa de 1,2s, então manter os
+// 8s só adiava a resposta. Um 8000 gravado é tratado como "não configurado";
+// quem quiser esse tempo agora escolhe pelo slider e o valor é respeitado
+// (8500, por exemplo, passa intacto).
+//
+// Precisa valer nos dois caminhos: sanitizeUserPrefs roda ao salvar, mas quem
+// lê a config instalada a cada request é normalizePrefs — aplicar só num deles
+// deixa o valor antigo em uso indefinidamente.
+const LEGACY_SLOW_THRESHOLD = 8000;
+function migrateSlowThreshold(value) {
+  return Number(value) === LEGACY_SLOW_THRESHOLD ? undefined : value;
+}
+
 function sanitizeUserPrefs(input = {}) {
   const src = input && typeof input === "object" && !Array.isArray(input) ? input : {};
   const out = {};
@@ -122,15 +137,7 @@ function sanitizeUserPrefs(input = {}) {
   }
 
   out.maxResults = clampNumber(src.maxResults, 20, 1, 100);
-  // 8000 era o padrão antigo e ficou gravado em toda config salva, porque o
-  // controle não existia na interface — ninguém chegou a escolher esse valor.
-  // Medindo os indexadores, nenhum além do 1337x passa de 1,2s, então manter os
-  // 8s só adiava a resposta. Um 8000 gravado é tratado como "não configurado";
-  // quem quiser esse tempo agora escolhe pelo slider e o valor é respeitado
-  // (8500, por exemplo, passa intacto).
-  const LEGACY_SLOW_THRESHOLD = 8000;
-  const slowSrc = Number(src.slowThreshold) === LEGACY_SLOW_THRESHOLD ? undefined : src.slowThreshold;
-  out.slowThreshold = clampNumber(slowSrc, 4000, 1000, 60000);
+  out.slowThreshold = clampNumber(migrateSlowThreshold(src.slowThreshold), 4000, 1000, 60000);
   out.skipBadReleases = src.skipBadReleases !== false;
   out.priorityLang = ["", "pt-br", "en", "es", "fr"].includes(src.priorityLang) ? src.priorityLang : "pt-br";
   out.onlyDubbed = src.onlyDubbed === true;
@@ -168,6 +175,7 @@ function sanitizeUserPrefs(input = {}) {
 
 function normalizePrefs(u = {}) {
   const m = { ...defaultPrefs(), ...u };
+  m.slowThreshold = clampNumber(migrateSlowThreshold(m.slowThreshold), 4000, 1000, 60000);
   if (!Array.isArray(m.indexers) || !m.indexers.length) m.indexers = ["all"];
   if (m.priorityLang === undefined) m.priorityLang = "pt-br";
 
