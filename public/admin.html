@@ -179,6 +179,32 @@
     display: flex; gap: 8px; justify-content: center; margin: 12px 0;
   }
 
+  /* ── Tabelas viram cards no celular ───────── */
+  @media (max-width: 900px) {
+    table, thead, tbody, tr, th, td { display: block; width: 100%; }
+    thead { display: none; }
+    table { border: none; }
+    tbody tr {
+      background: #ffffff; border: 2px outset #ffffff;
+      border-right-color: #808080; border-bottom-color: #808080;
+      margin-bottom: 12px; padding: 4px 12px; box-shadow: 2px 2px 0 #808080;
+    }
+    td {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      border: none; border-bottom: 1px dashed #c0c0c0; padding: 10px 0;
+      background: transparent !important; font-size: 13px;
+    }
+    td:last-child { border-bottom: none; }
+    td::before {
+      content: attr(data-label); font-weight: bold; color: #000080;
+      font-family: 'Comic Sans MS', Verdana; font-size: 13px; flex: none; margin-right: 10px;
+    }
+    td.td-actions { display: block; padding-top: 10px; }
+    td.td-actions::before { content: none; }
+    td:has(.cat-detail) { display: block; padding: 0; border: none; }
+    td:has(.cat-detail)::before { content: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -327,11 +353,11 @@ async function loadKeys() {
       ? `<span class="pill ${expired ? "warn" : "open"}">${expired ? "expirada em " : ""}${fmtDate(k.expiresAt)}</span>`
       : `<span class="pill open">nunca</span>`;
     tr.innerHTML = `
-      <td>${k.label || "—"}</td>
-      <td><span class="kv"><span>${k.id}</span><button class="icon-btn" data-copy="${k.id}" title="Copiar">📋</button></span></td>
-      <td>${ipCell}</td>
-      <td>${expiryCell}</td>
-      <td>
+      <td data-label="Rótulo">${k.label || "—"}</td>
+      <td data-label="Chave"><span class="kv"><span>${k.id}</span><button class="icon-btn" data-copy="${k.id}" title="Copiar">📋</button></span></td>
+      <td data-label="IP">${ipCell}</td>
+      <td data-label="Expira">${expiryCell}</td>
+      <td class="td-actions">
         <div class="row-actions">
           <button data-reset="${k.id}" ${k.ip && k.ipLimited !== false ? "" : "disabled"}>Resetar IP</button>
           <button data-toggle-ip="${k.id}" data-current="${k.ipLimited !== false}">${k.ipLimited === false ? "Limitar IP" : "Liberar IP"}</button>
@@ -434,10 +460,10 @@ async function loadCatalogs() {
     const tr = document.createElement("tr");
     tr.className = "cat-row";
     tr.innerHTML = `
-      <td>${cat.name}</td>
-      <td><code>${cat.id}</code></td>
-      <td>${cat.items.length}</td>
-      <td>
+      <td data-label="Nome">${cat.name}</td>
+      <td data-label="Id"><code>${cat.id}</code></td>
+      <td data-label="Títulos">${cat.items.length}</td>
+      <td class="td-actions">
         <div class="row-actions">
           <button data-rename="${cat.id}">Renomear</button>
           <button data-del-cat="${cat.id}" class="danger">Excluir</button>
