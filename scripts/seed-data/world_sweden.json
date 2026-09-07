@@ -360,11 +360,6 @@
     "imdbId": "tt0120152"
   },
   {
-    "title": "The Terrorists",
-    "year": 1975,
-    "imdbId": "tt0073796"
-  },
-  {
     "title": "Roseanna",
     "year": 1967,
     "imdbId": "tt0062217"
@@ -373,11 +368,6 @@
     "title": "Triangle of Sadness",
     "year": 2022,
     "imdbId": "tt7322224"
-  },
-  {
-    "title": "The Swimmers",
-    "year": 2022,
-    "imdbId": "tt8745676"
   },
   {
     "title": "Beartown",
@@ -473,10 +463,5 @@
     "title": "The Girl in the Spider Web",
     "year": 2018,
     "imdbId": "tt5177088"
-  },
-  {
-    "title": "The Outpost",
-    "year": 2019,
-    "imdbId": "tt3833480"
   }
 ]

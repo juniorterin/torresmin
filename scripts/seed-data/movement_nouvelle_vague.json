@@ -425,16 +425,6 @@
     "imdbId": "tt0143088"
   },
   {
-    "title": "La Belle Noiseuse",
-    "year": 1991,
-    "imdbId": "tt0101428"
-  },
-  {
-    "title": "Accident",
-    "year": 1967,
-    "imdbId": "tt0061328"
-  },
-  {
     "title": "Model Shop",
     "year": 1969,
     "imdbId": "tt0064679"
@@ -443,11 +433,6 @@
     "title": "Une Chambre en Ville",
     "year": 1982,
     "imdbId": "tt0084843"
-  },
-  {
-    "title": "Parking",
-    "year": 1985,
-    "imdbId": "tt0089775"
   },
   {
     "title": "L'Événement le plus important depuis que l'homme a marché sur la lune",
@@ -463,10 +448,5 @@
     "title": "The Mother and the Whore",
     "year": 1973,
     "imdbId": "tt0070359"
-  },
-  {
-    "title": "Pauline at the Beach",
-    "year": 1983,
-    "imdbId": "tt0086087"
   }
 ]

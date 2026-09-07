@@ -170,11 +170,6 @@
     "imdbId": "tt0046313"
   },
   {
-    "title": "Il Grido",
-    "year": 1957,
-    "imdbId": "tt0050458"
-  },
-  {
     "title": "Senso",
     "year": 1954,
     "imdbId": "tt0047469"
@@ -320,31 +315,6 @@
     "imdbId": "tt0054870"
   },
   {
-    "title": "Il sorpasso",
-    "year": 1962,
-    "imdbId": "tt0056512"
-  },
-  {
-    "title": "Accattone",
-    "year": 1961,
-    "imdbId": "tt0054599"
-  },
-  {
-    "title": "Mamma Roma",
-    "year": 1962,
-    "imdbId": "tt0056215"
-  },
-  {
-    "title": "La notte",
-    "year": 1961,
-    "imdbId": "tt0054130"
-  },
-  {
-    "title": "L'Avventura",
-    "year": 1960,
-    "imdbId": "tt0053619"
-  },
-  {
     "title": "Le amiche",
     "year": 1955,
     "imdbId": "tt0047821"
@@ -373,35 +343,5 @@
     "title": "Il magistrato",
     "year": 1959,
     "imdbId": "tt0053031"
-  },
-  {
-    "title": "Rocco and His Brothers",
-    "year": 1960,
-    "imdbId": "tt0054248"
-  },
-  {
-    "title": "Salvatore Giuliano",
-    "year": 1962,
-    "imdbId": "tt0055399"
-  },
-  {
-    "title": "The Organizer",
-    "year": 1963,
-    "imdbId": "tt0056945"
-  },
-  {
-    "title": "Fists in the Pocket",
-    "year": 1965,
-    "imdbId": "tt0059619"
-  },
-  {
-    "title": "The Battle of Algiers",
-    "year": 1966,
-    "imdbId": "tt0058946"
-  },
-  {
-    "title": "In the Summertime",
-    "year": 1971,
-    "imdbId": "tt0067028"
   }
 ]
