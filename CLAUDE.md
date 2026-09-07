@@ -36,6 +36,6 @@ Each file below covers one area in depth — the reasoning and trade-offs behind
 - @.claude/docs/persistence.md — the Postgres-or-file pattern shared by `configStore`/`accessKeys`/`catalogs`, and the `cfg_<hash>` config-identity scheme
 - @.claude/docs/stream-pipeline.md — the full `/stream` → `/play` request flow, the module doing the heaviest lifting in this app
 - @.claude/docs/auth.md — the three separate, unrelated auth mechanisms and what each one actually gates
-- @.claude/docs/catalogs-and-rss.md — RSS "recently added" catalog vs. admin-curated catalogs — two different features
+- @.claude/docs/catalogs-and-rss.md — RSS "recently added" catalog vs. admin-curated catalogs — two different features; also why ~half the seeded IMDb IDs were fabricated, how `scripts/verifyCatalogs.js` audits them, and why seed files ≠ the live store
 - @.claude/docs/naming.md — the prowjack/TorrStremio → TorrESMIN rebrand, now complete
 - @.claude/docs/gotchas.md — known bugs/traps found while working in this codebase, not yet fixed

@@ -27,9 +27,76 @@ There are two ways to create one, and they converge on the same storage:
    - Run `node scripts/seedCatalogs.js` (needs the same env as the app — `CONFIG_DATA_DIR` or `CONFIG_DATABASE_URL` — so it writes to the same store the running app reads from). It's idempotent: re-running it never duplicates the catalog or an item already in it, so it's safe to re-run after adding more rows to the JSON file later.
    - **The `imdbId` for every row must already be resolved before it goes in the file.** Cinemeta only exposes `/meta/<type>/<imdbId>.json` — there's no title-search endpoint it or this codebase can call — so turning a list of titles (from Sight & Sound, TSPDT, Letterboxd, wherever) into `{title, year, imdbId}` rows is a manual/external research step, not something `seedCatalogs.js` does for you.
 
-Currently seeded, at 121/99/250/100/28 items respectively: `criterion`, `sightsound` ("Sight & Sound — Top 100"), `imdbtop250`, `tspdt100` ("TSPDT — 100 Maiores Filmes"), `mindbending`. Every one of the ideas below follows the exact same two-step recipe — a seed-data JSON plus a `CATALOGS` entry — there's no per-source special-casing in the code.
+There are 67 seed files today, ~4850 entries total, all wired into `CATALOGS`. Every one follows the same two-step recipe — a seed-data JSON plus a `CATALOGS` entry — there's no per-source special-casing in the code.
 
-**Data files that exist but aren't wired up yet:** `scripts/seed-data/afi_thrills.json` (100), `criterion_horror.json` (7), `criterion_japan.json` (12), `criterion_noir.json` (8), `imdbtop100.json` (100), and `imdbtop50.json` (50) are already sitting in the repo — someone did the title→IMDb-id research for several of the ideas below (AFI Thrills, three Criterion genre/country subsets, tighter IMDb cuts) — but `scripts/seedCatalogs.js`'s `CATALOGS` array hasn't been updated with matching entries for them. Running the script today won't create these catalogs; whoever picks this up next just needs to add the `{ slug, name, type }` rows (slugs presumably `afi_thrills`/`criterion_horror`/`criterion_japan`/`criterion_noir`/`imdbtop100`/`imdbtop50`, matching the filenames) and re-run it.
+## Data integrity: most of these IDs were fabricated, and how that was fixed
+
+**Question:** the seed files look like plain research output. Why does this codebase carry a verification script, and why does its doc keep insisting the IDs be checked?
+
+**Answer: because roughly half of them were wrong, and the failure was invisible.** A wrong `imdbId` here is not a broken link — it's a *valid ID of a different film*. The catalog loads normally and shows the wrong movie. Nothing errors, nothing logs.
+
+### Where the bad data came from
+
+Git history separates the good from the bad cleanly:
+
+- Catalogs seeded from **lists that exist publicly** — `imdbtop250`, `sightsound`, `tspdt100`, `afi_*`, `criterion`, most `director_*` — came from commits like `3724e01` ("Seed the 5 curated catalogs with real data") and audited at ~0 errors.
+- Catalogs from commit **`28d6f77`** ("expandir catálogos seed — 54 novos catálogos") — 54 catalogs, 2056 lines, one commit — audited at **~46% wrong**. Nobody researches thousands of IMDb IDs in one sitting; that content was bulk-generated.
+
+The error signature confirms it: the bad IDs are *well-formed and in the right numeric range for the era* (`tt0048544` for a 1955 film is plausible) but point elsewhere. That is what generating IDs from memory produces — format right, target wrong.
+
+It maps onto category, too. Nouvelle Vague, Cinema Novo, Neorealism, cinema-by-country, "road movies" are **editorial** lists that exist nowhere ready-made, so both the list and the IDs were invented. Criterion and IMDb Top 250 had a real source to copy, and survived.
+
+A later repair attempt, `a36570e` ("corrigir IMDb IDs via verificação TMDB"), introduced errors of its own — it repointed *Midnight* (1939) at a 1989 film.
+
+### The verification script
+
+```bash
+node scripts/verifyCatalogs.js                # everything (~25 min)
+node scripts/verifyCatalogs.js world_brazil   # one or more catalogs
+node scripts/verifyCatalogs.js --fresh        # ignore the local cache
+```
+
+It asks one question per row: does this `imdbId` really point at that title, in that year? Output goes to `scripts/catalog-report.json` (gitignored), split into `broken` / `yearOff` / `notFeature` / `translated` / `unchecked`.
+
+**Why IMDb and not Cinemeta.** The script queries `https://v2.sg.media-imdb.com/suggestion/t/<imdbId>.json` — the endpoint behind imdb.com's own autocomplete. No key, and it returns title (`l`), year (`y`) and type (`q`: feature/short/TV series). Cinemeta is worse for *validation* on both counts: it has no type field, and `/meta/movie/<id>` answers with **a different film's data** rather than a 404 when the ID belongs to a series — `tt0080196` comes back as "Million Dollar Mermaid" instead of Berlin Alexanderplatz. Cinemeta remains the right source at runtime (`routes/catalog.js`); it is the wrong source for auditing.
+
+### Two traps, both learned the hard way
+
+**A nonexistent ID does not error — it returns the closest match.** Querying `tt9999999999` answers "Space: 1999". Any checker that accepts the first result will mark every broken ID as valid. The script only accepts a result whose `id` is *identical* to the one queried.
+
+**A failed lookup is not a finding.** The first run used concurrency 6, collected `429 Too Many Requests` partway through ~4855 lookups, treated each failure as "ID doesn't exist", *and cached that*. The report claimed **2703 broken IDs** — including catalogs already known to be clean. The rerun, sequential with 300ms spacing, found **1**. So: the lookup has three states (verified / confirmed-missing / could-not-check), failures never reach the cache, and `unchecked` is reported separately with an explicit note that it is not a defect.
+
+### The limitation that remains
+
+The check reprove a row only when title **and** year both diverge. When a wrong ID happens to point at a film of the *same year*, it lands in the `translated` bucket alongside legitimate cases like Tilai→"The Law" and Uzak→"Distant".
+
+Six real defects were hiding there and came out only by reading the bucket by hand (*She Danced One Summer* → "Son of Paleface", *Mon oncle d'Amérique* → "Private Benjamin", …). **~100 entries in that bucket have never been reviewed one by one.**
+
+Year alone cannot separate "translated title" from "wrong film, same year". The natural tiebreaker is director, and the IMDb suggestion endpoint returns cast (`s`), not director — so closing this gap needs a second source (TMDB has director and this repo already has optional TMDB support in `metadata.js`) or manual review.
+
+### Seed files are not the live catalog
+
+This trips people up constantly: **fixing a seed file changes nothing in production.** `scripts/seed-data/*.json` is input to `seedCatalogs.js`; what the app serves is the store (`torresmin_catalogs.json`, or Postgres). They drift apart, and have: the store has carried ~5850 items while the seed files were down to ~4850 after corrections.
+
+Worse, `seedCatalogs.js` is **additive** — it is idempotent about not duplicating, but it does not delete. Entries removed from a seed file stay in the store forever. Applying removals needs either a store edit through `/admin` or a deliberate reseed strategy.
+
+Symptom to recognize: a catalog shows fewer items than its seed file has. Those missing rows are stale bad IDs in the store that Cinemeta cannot resolve, so `routes/catalog.js` drops them.
+
+## Serving a catalog: why `routes/catalog.js` looks defensive
+
+**Question:** why is the metadata fetch there rate-limited and split across two caches, when a plain `Promise.all` would be shorter?
+
+**Answer: because the plain version took the whole home screen down, and did it silently.** The original built each catalog with `Promise.all(catalog.items.map(...))` — no bound. A 103-film catalog opened 103 simultaneous Cinemeta connections. Stremio requests *many* catalogs at once when the home screen opens, and with 69 rows in the manifest the peak went past a thousand parallel requests.
+
+Cinemeta timed out, every item hit `catch { return null }`, the catalog was assembled nearly empty — **and the empty result was cached for 6 hours.** Measured live: 45 of 69 catalogs cached completely empty, 10 more under 25 items, 14 healthy. The user-visible symptom was "catalogs load up to about the 30th, the rest spin and vanish", and they stayed broken because the poison had a 6-hour TTL.
+
+Three things keep it from coming back, and none should be removed casually:
+
+- **`META_CONCURRENCY = 8`** per catalog instead of unbounded.
+- **Per-ID metadata cache** (`cinemeta:<type>:<id>`, 7 days). The same film appears across many catalogs, so the second catalog containing it costs nothing. This is what took a large cold catalog from 19.6s to ~4.5s.
+- **`CATALOG_MIN_SUCCESS_RATIO`** — a build resolving under 80% of its items is cached for 2 minutes, not 6 hours, and logs a warning. A bad moment at Cinemeta must not own the rest of the day.
+
+If catalogs go empty again, check the cache before the data: `keys curatedcatalog:*` in Redis and count how many hold `[]`. Note that `cache.js` falls back to an in-memory Map, so clearing that cache from a *separate* `node -e` process silently does nothing to the running server — go through Redis directly.
 
 ## Content roadmap: what other curated catalogs could exist
 
