@@ -29,7 +29,11 @@ const META_CACHE_TTL = 7 * 24 * 3600;
 // Só vale gravar o catálogo montado por 6h se ele ficou realmente completo. Um
 // build degradado gravado com TTL longo era o que fazia o catálogo aparecer
 // vazio e continuar vazio pelo resto do dia.
-const CATALOG_MIN_SUCCESS_RATIO = 0.8;
+//
+// O limite era 0.8 e ficou frouxo demais: um catálogo de 72 itens montou com
+// 60 (83%), passou como completo e ficou 6h assim — quando na verdade 71 dos
+// 72 resolvem, e as perdas eram 504 transitórios do Cinemeta sob carga.
+const CATALOG_MIN_SUCCESS_RATIO = 0.95;
 const CATALOG_DEGRADED_TTL = 120;
 
 async function mapLimit(items, limit, fn) {
@@ -41,14 +45,30 @@ async function mapLimit(items, limit, fn) {
   return out;
 }
 
+// Uma tentativa só perdia itens à toa: sob carga o Cinemeta devolve 504/503
+// esporádicos, e cada um desses derrubava um filme do catálogo. Medindo um
+// catálogo de 72 itens, 71 resolvem — as perdas eram todas transitórias.
 async function fetchMeta(type, imdbId) {
   const key = `cinemeta:${type}:${imdbId}`;
   const hit = await rc.get(key).catch(() => null);
   if (hit) { try { return JSON.parse(hit); } catch { /* refaz abaixo */ } }
-  const r = await axios.get(`https://v3-cinemeta.strem.io/meta/${type}/${imdbId}.json`, { timeout: 6000 });
-  const meta = r.data?.meta;
-  if (meta) rc.set(key, JSON.stringify(meta), META_CACHE_TTL).catch(() => {});
-  return meta || null;
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const r = await axios.get(`https://v3-cinemeta.strem.io/meta/${type}/${imdbId}.json`, { timeout: 6000 });
+      const meta = r.data?.meta;
+      if (meta) {
+        rc.set(key, JSON.stringify(meta), META_CACHE_TTL).catch(() => {});
+        return meta;
+      }
+      return null;                                // respondeu e não tem o filme
+    } catch (err) {
+      // 404 é resposta, não falha: não adianta repetir.
+      if (err.response && err.response.status === 404) return null;
+      if (attempt === 0) await new Promise(r => setTimeout(r, 400));
+    }
+  }
+  return null;
 }
 
 router.get("/:userConfig/catalog/:type/:id.json", async (req, res) => {
