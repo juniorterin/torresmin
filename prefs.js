@@ -77,7 +77,7 @@ function defaultPrefs() {
     categories:      ["movie", "series"],
     weights:         { language: 40, resolution: 30, seeders: 20, size: 5, codec: 5 },
     maxResults:      20,
-    slowThreshold:   8000,
+    slowThreshold:   4000,
     skipBadReleases: true,
     priorityLang:    "pt-br",
     onlyDubbed:      false,
@@ -122,7 +122,7 @@ function sanitizeUserPrefs(input = {}) {
   }
 
   out.maxResults = clampNumber(src.maxResults, 20, 1, 100);
-  out.slowThreshold = clampNumber(src.slowThreshold, 8000, 1000, 60000);
+  out.slowThreshold = clampNumber(src.slowThreshold, 4000, 1000, 60000);
   out.skipBadReleases = src.skipBadReleases !== false;
   out.priorityLang = ["", "pt-br", "en", "es", "fr"].includes(src.priorityLang) ? src.priorityLang : "pt-br";
   out.onlyDubbed = src.onlyDubbed === true;

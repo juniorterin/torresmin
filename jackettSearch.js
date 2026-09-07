@@ -647,7 +647,7 @@ async function jackettSearch(plan, indexers, prefs) {
       }
     }
   }
-  const FAST_TIMEOUT = (prefs?.slowThreshold > 0 ? prefs.slowThreshold : 8000);
+  const FAST_TIMEOUT = (prefs?.slowThreshold > 0 ? prefs.slowThreshold : 4000);
   const SLOW_TIMEOUT = 50000;
   console.log(`Jackett iniciando busca: "${queryList[0] || plan?.search?.title || "sem titulo"}" em [${indexers.length} indexers]`);
   console.log(`Fase rapida: aguardando respostas... (${FAST_TIMEOUT}ms max)`);
@@ -685,10 +685,16 @@ async function jackettSearch(plan, indexers, prefs) {
     // earlyGated só dispara quando há resultados suficientes E o mínimo de tempo decorreu.
     // Sem esse mínimo, 3 indexers rápidos com 60+ resultados encerravam a fase rápida antes
     // que os demais (mais lentos, mas igualmente relevantes) terminassem de responder.
-    // 35% do FAST_TIMEOUT é o piso mínimo: ex. 20 s → 7 s, 8 s → 2.8 s (nunca < 2 s).
+    // 35% do FAST_TIMEOUT é o piso mínimo: ex. 20 s → 7 s, 4 s → 1.4 s (nunca < 1.2 s).
+    //
+    // O piso já foi 2 s, mas medindo os indexadores um a um a dispersão real ficou
+    // entre 0,68 s e 1,12 s — a diferença entre o mais rápido e o mais lento é de
+    // ~400 ms, não de segundos. Os 2 s só adiavam a resposta sem trazer resultado
+    // novo. Indexador que passa disso (1337x, ~10 s por causa do desafio Cloudflare)
+    // não cabe em janela nenhuma e é atendido pela busca em background.
     Promise.all([
       earlyPromise,
-      new Promise(r => setTimeout(r, Math.max(2000, Math.round(FAST_TIMEOUT * 0.35)))),
+      new Promise(r => setTimeout(r, Math.max(1200, Math.round(FAST_TIMEOUT * 0.35)))),
     ]),
   ]);
 
