@@ -1,0 +1,69 @@
+name: Reportar um problema
+description: Algo não funciona como deveria
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de abrir: **vídeo que trava ou não abre costuma ser o aparelho, não o addon.**
+        A TV ou o box não decodifica aquele formato. Volte na lista, escolha outra opção
+        (de preferência 1080p, e evite AV1) e veja se resolve. Se resolver, não é bug.
+
+  - type: textarea
+    id: oque
+    attributes:
+      label: O que aconteceu
+      description: E o que você esperava que acontecesse.
+    validations:
+      required: true
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Como reproduzir
+      placeholder: |
+        1. Busquei "..." no Stremio
+        2. Escolhi o stream "..."
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log do addon
+      description: "`docker logs <container-do-torresmin> --tail 100`. Remova chaves de API e chaves de acesso antes de colar."
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde está acontecendo
+      options:
+        - Smart TV
+        - Android TV / TV box
+        - Celular Android
+        - iPhone / iPad
+        - Stremio no PC / notebook
+        - Navegador (Stremio Web)
+    validations:
+      required: true
+
+  - type: input
+    id: stream
+    attributes:
+      label: Nome do stream, se for problema de reprodução
+      description: Como apareceu na lista — resolução, codec e seeders ajudam a diagnosticar.
+      placeholder: "1080p x265 HEVC · 12 seeders"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checagens
+    attributes:
+      label: Já verifiquei que
+      options:
+        - label: O TorrServer está no ar e o addon consegue falar com ele
+        - label: Tentei outro stream do mesmo título e o problema se repete

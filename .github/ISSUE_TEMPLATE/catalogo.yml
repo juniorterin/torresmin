@@ -1,0 +1,42 @@
+name: Problema em um catálogo
+description: Filme errado, faltando, ou sugestão de catálogo novo
+labels: ["catalogos"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Filme errado num catálogo quase sempre é **id do IMDb apontando para outra obra** —
+        o id é válido, só que de outro filme, então carrega normalmente exibindo o errado.
+        Se souber o id correto, inclua: acelera muito a correção.
+
+  - type: input
+    id: catalogo
+    attributes:
+      label: Qual catálogo
+      placeholder: "Movimento — Nouvelle Vague"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de problema
+      options:
+        - Mostra um filme que não é aquele
+        - Falta um filme que deveria estar
+        - Tem filme que não pertence a esse catálogo
+        - O catálogo aparece vazio
+        - Sugestão de catálogo novo
+    validations:
+      required: true
+
+  - type: textarea
+    id: detalhe
+    attributes:
+      label: Detalhe
+      description: Título, ano e — se souber — o id correto do IMDb.
+      placeholder: |
+        "Le Bonheur" (1965, Varda) aparece como outro filme.
+        O id certo é tt0058985.
+    validations:
+      required: true

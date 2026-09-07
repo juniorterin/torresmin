@@ -1,0 +1,100 @@
+name: Auditar catálogos
+
+# A validação estrutural roda a cada push (test/unit/seedData.test.js). Esta
+# aqui é a outra metade: conferir no IMDb se cada id aponta mesmo para aquele
+# filme. Leva ~25min por causa do limite de requisições do IMDb, então roda
+# semanalmente em vez de a cada push.
+#
+# Abre uma issue quando encontra id quebrado ou ano divergente — é o que teria
+# pego o commit a36570e, que reapontou "Midnight" (1939) para um filme de 1989
+# sem ninguém notar.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"      # segundas, 6h UTC
+  workflow_dispatch:          # e sob demanda, pelo botão na aba Actions
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Auditar catálogos contra o IMDb
+        id: auditoria
+        continue-on-error: true
+        run: node scripts/verifyCatalogs.js
+
+      - name: Resumir o relatório
+        id: resumo
+        if: always()
+        run: |
+          if [ ! -f scripts/catalog-report.json ]; then
+            echo "houve_problema=erro" >> "$GITHUB_OUTPUT"
+            echo "corpo=A auditoria não gerou relatório — verifique o log da execução." >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          node -e '
+            const r = require("./scripts/catalog-report.json");
+            const fs = require("fs");
+            const grave = r.broken.length + r.yearOff.length;
+
+            const linhas = (lista, titulo) => lista.length
+              ? `\n### ${titulo} (${lista.length})\n\n` + lista.slice(0, 40).map(x =>
+                  `- \`${x.slug}\` — **${x.title}** (${x.year}) \`${x.imdbId}\`` +
+                  (x.imdbTitle ? ` → IMDb diz: *${x.imdbTitle}* (${x.imdbYear})` : " → não existe no IMDb")
+                ).join("\n") + (lista.length > 40 ? `\n\n_...e mais ${lista.length - 40}._` : "")
+              : "";
+
+            const corpo = [
+              `Auditoria automática de ${r.total} entradas em \`scripts/seed-data/\`.`,
+              ``,
+              `| categoria | quantidade |`,
+              `|---|---|`,
+              `| id confere | ${r.ok} |`,
+              `| **id quebrado** | **${r.broken.length}** |`,
+              `| **ano divergente** | **${r.yearOff.length}** |`,
+              `| não é longa-metragem | ${r.notFeature.length} |`,
+              `| não verificado (limite do IMDb) | ${r.unchecked.length} |`,
+              linhas(r.broken, "IDs que não existem no IMDb"),
+              linhas(r.yearOff, "IDs que apontam para outro filme"),
+              ``,
+              `---`,
+              `Reproduza com \`node scripts/verifyCatalogs.js\`. Entradas em "não verificado" **não são defeito** — o IMDb limitou por volume; basta rodar de novo.`,
+            ].join("\n");
+
+            fs.writeFileSync("corpo-issue.md", corpo);
+            console.log(`grave=${grave}`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `houve_problema=${grave > 0 ? "sim" : "nao"}\n`);
+          '
+
+      - name: Abrir issue se houver defeito
+        if: steps.resumo.outputs.houve_problema == 'sim'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Auditoria de catálogos encontrou ids incorretos ($(date +%Y-%m-%d))" \
+            --body-file corpo-issue.md \
+            --label "catalogos" || echo "Falha ao abrir issue (o label 'catalogos' existe?)"
+
+      - name: Guardar o relatório completo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-report
+          path: scripts/catalog-report.json
+          if-no-files-found: ignore
