@@ -224,6 +224,54 @@ async function markTorrentDownloadFailed(r) {
 }
 
 const activeDownloads = new Map();
+
+// Disjuntor por indexador.
+//
+// O cache de falha existente é por torrent, então um indexador cujo endpoint de
+// download está quebrado cobra o preço inteiro de novo a cada busca: os torrents
+// são outros, o cache não ajuda, e cada candidato ocupa a fila até estourar os 6s.
+// Medido em produção com o TorrentDownload fora do ar, isso custou 18s de uma
+// busca de 27s — ele devolvia ~50 resultados por busca, nenhum com magnet nem
+// infohash, e todo download falhava por redirect quebrado.
+//
+// Aqui basta acumular falhas consecutivas por indexador: passou do limite, os
+// candidatos dele são descartados na hora por um tempo, em vez de bloquearem a
+// resposta. Uma única resolução bem-sucedida zera a contagem, então um indexador
+// que só teve um mau momento volta sozinho.
+const INDEXER_FAILURE_LIMIT = 5;
+const INDEXER_TRIP_MS = 10 * 60 * 1000;
+const indexerFailures = new Map();
+
+function indexerIdFromLink(httpLink) {
+  const m = String(httpLink || "").match(/https?:\/\/[^/]+\/([^/]+)\/download/);
+  return m ? m[1] : null;
+}
+
+function isIndexerTripped(id) {
+  if (!id) return false;
+  const rec = indexerFailures.get(id);
+  if (!rec || rec.count < INDEXER_FAILURE_LIMIT) return false;
+  if (Date.now() - rec.trippedAt > INDEXER_TRIP_MS) {
+    indexerFailures.delete(id);
+    return false;
+  }
+  return true;
+}
+
+function noteIndexerFailure(id) {
+  if (!id) return;
+  const rec = indexerFailures.get(id) || { count: 0, trippedAt: 0 };
+  rec.count++;
+  if (rec.count === INDEXER_FAILURE_LIMIT) {
+    rec.trippedAt = Date.now();
+    console.warn(`[Disjuntor] Indexador ${id}: ${rec.count} falhas seguidas de download — ignorando por ${INDEXER_TRIP_MS / 60000}min`);
+  }
+  indexerFailures.set(id, rec);
+}
+
+function noteIndexerSuccess(id) {
+  if (id) indexerFailures.delete(id);
+}
 const INFOHASH_QUEUE_CONCURRENCY = Math.max(1, Math.min(10, Number(process.env.INFOHASH_QUEUE_CONCURRENCY || 3)));
 
 function infoHashQueueKey(r) {
@@ -334,7 +382,13 @@ async function resolveInfoHash(r, reqCtx = {}) {
       }
     } catch {}
 
-    if (reqCtx.fastOnly) return null; 
+    if (reqCtx.fastOnly) return null;
+
+    // Indexador com download quebrado: não vale ocupar a fila até o timeout.
+    const breakerId = indexerIdFromLink(httpLink);
+    if (isIndexerTripped(breakerId)) {
+      return magnetHash ? { infoHash: magnetHash, files: null, buffer: null, isPrivate: false } : null;
+    }
 
     let downloadPromise = activeDownloads.get(urlHashKey);
     if (!downloadPromise) {
@@ -395,8 +449,8 @@ async function resolveInfoHash(r, reqCtx = {}) {
             }
           } else {
             await markTorrentDownloadFailed(r);
-            const indexerMatch = httpLink.match(/https?:\/\/[^\/]+\/([^\/]+)\/download/);
-            const idxId = indexerMatch ? `Indexador ${indexerMatch[1]}` : httpLink.slice(0,40)+'...';
+            noteIndexerFailure(breakerId);
+            const idxId = breakerId ? `Indexador ${breakerId}` : httpLink.slice(0,40)+'...';
             console.warn(`[WARN] Falha ao baixar torrent (${idxId}): ${err.message}`);
           }
           return magnetHash ? { infoHash: magnetHash, files: null, buffer: null, isPrivate: false } : null;
@@ -416,12 +470,13 @@ async function resolveInfoHash(r, reqCtx = {}) {
     const result = await Promise.race([downloadPromise, timeoutPromise]);
     
     if (result === "TIMEOUT") {
-      const indexerMatch = httpLink.match(/https?:\/\/[^\/]+\/([^\/]+)\/download/);
-      const idxId = indexerMatch ? `Indexador ${indexerMatch[1]}` : httpLink.slice(0,50)+'...';
+      noteIndexerFailure(breakerId);
+      const idxId = breakerId ? `Indexador ${breakerId}` : httpLink.slice(0,50)+'...';
       console.warn(`[WARN] Timeout ${Math.round(timeoutMs/1000)}s atingido em resolveInfoHash para ${idxId} (Download continua em background)`);
       reqCtx.hasTimedOut = true;
       return magnetHash ? { infoHash: magnetHash, files: null, buffer: null, isPrivate: false } : null;
     }
+    if (result && result.infoHash) noteIndexerSuccess(breakerId);
     return result;
   }
 

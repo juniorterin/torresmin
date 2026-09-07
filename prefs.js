@@ -122,7 +122,15 @@ function sanitizeUserPrefs(input = {}) {
   }
 
   out.maxResults = clampNumber(src.maxResults, 20, 1, 100);
-  out.slowThreshold = clampNumber(src.slowThreshold, 4000, 1000, 60000);
+  // 8000 era o padrão antigo e ficou gravado em toda config salva, porque o
+  // controle não existia na interface — ninguém chegou a escolher esse valor.
+  // Medindo os indexadores, nenhum além do 1337x passa de 1,2s, então manter os
+  // 8s só adiava a resposta. Um 8000 gravado é tratado como "não configurado";
+  // quem quiser esse tempo agora escolhe pelo slider e o valor é respeitado
+  // (8500, por exemplo, passa intacto).
+  const LEGACY_SLOW_THRESHOLD = 8000;
+  const slowSrc = Number(src.slowThreshold) === LEGACY_SLOW_THRESHOLD ? undefined : src.slowThreshold;
+  out.slowThreshold = clampNumber(slowSrc, 4000, 1000, 60000);
   out.skipBadReleases = src.skipBadReleases !== false;
   out.priorityLang = ["", "pt-br", "en", "es", "fr"].includes(src.priorityLang) ? src.priorityLang : "pt-br";
   out.onlyDubbed = src.onlyDubbed === true;
