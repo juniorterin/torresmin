@@ -51,6 +51,23 @@
   .step-btn.done { background: #00aa00; color: #ffffff; border-color: #007700; }
   .step-btn:hover:not(.on):not(.done) { background: #d0d0ff; }
 
+  /* ── Stepper mobile (setas + rótulo único) ── */
+  .stepper-mobile { display: none; }
+  .step-arrow {
+    background: #c0c0c0; color: #000080; border: 2px outset #ffffff;
+    border-right-color: #808080; border-bottom-color: #808080;
+    font-family: 'Comic Sans MS', Verdana; font-size: 18px; font-weight: bold;
+    width: 34px; height: 34px; line-height: 1; padding: 0; cursor: pointer; flex: none;
+  }
+  .step-arrow:active { border-style: inset; }
+  .step-arrow:disabled { opacity: .4; cursor: default; }
+  .step-mobile-label {
+    flex: 1; text-align: center; background: #ffff00; color: #000080;
+    border: 2px inset #808080; font-family: 'Comic Sans MS', Verdana;
+    font-size: 13px; font-weight: bold; padding: 7px 8px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
   /* ── Conteúdo principal ──────────────────── */
   .main-content { max-width: 720px; margin: 0 auto; padding: 20px 16px 0; }
 
@@ -278,6 +295,17 @@
   }
   .step-nav-right { display: flex; gap: 8px; flex-wrap: wrap; }
 
+  /* ── Badge open source ────────────────────── */
+  .oss-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #d4d0c8; border: 2px outset #ffffff;
+    border-right-color: #808080; border-bottom-color: #808080;
+    color: #000080; font-family: 'Comic Sans MS', Verdana; font-size: 13px; font-weight: bold;
+    padding: 6px 12px; text-decoration: none; box-shadow: 2px 2px 0 #808080;
+  }
+  .oss-badge:hover { background: #e8e4dc; }
+  .oss-badge:active { border-style: inset; }
+
   /* ── Acronym chips intro ─────────────────── */
   .acronym-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .acronym-chip {
@@ -354,6 +382,10 @@
   @media (max-width: 600px) {
     .row-2 { grid-template-columns: 1fr; }
     .fmt-grid .row { grid-template-columns: 1fr; }
+    .stepper-bar { display: flex; align-items: center; }
+    .stepper-bar .stepper-label { display: none; }
+    .stepper-desktop { display: none; }
+    .stepper-mobile { display: flex; align-items: center; gap: 8px; width: 100%; }
   }
 
 </style>
@@ -379,10 +411,15 @@
 
 <!-- ── Stepper ── -->
 <div class="stepper-bar">
-  <span style="color:#c0c0c0;font-family:'Comic Sans MS',Verdana;font-size:13px;font-weight:bold;margin-right:10px;">
+  <span class="stepper-label" style="color:#c0c0c0;font-family:'Comic Sans MS',Verdana;font-size:13px;font-weight:bold;margin-right:10px;">
     Passo <span id="step-current">1</span>/<span id="step-total">7</span>:
   </span>
-  <div id="stepper"></div>
+  <div id="stepper" class="stepper-desktop"></div>
+  <div class="stepper-mobile" id="stepper-mobile">
+    <button type="button" class="step-arrow" id="step-prev-arrow" aria-label="Passo anterior">‹</button>
+    <span class="step-mobile-label" id="step-mobile-label">1/7 — Início</span>
+    <button type="button" class="step-arrow" id="step-next-arrow" aria-label="Próximo passo">›</button>
+  </div>
 </div>
 
 <!-- ── Conteúdo principal ── -->
@@ -391,7 +428,6 @@
   <!-- ── Passo 1: Início ── -->
   <section class="slide on" id="slide-home">
     <div class="topline" style="margin-bottom:16px;">
-      <h1>Torrent: Entertainment<br>Should Make <em>Inclusion Natural.</em></h1>
       <p class="lede">TorrESMIN busca em Prowlarr/Jackett e transmite pelo TorrServer, com seek de verdade. Este passo a passo configura tudo — menos de 2 minutos.</p>
       <div class="acronym-row">
         <span class="acronym-chip" style="--chip-tilt:-2deg">Torrent</span>
@@ -400,6 +436,64 @@
         <span class="acronym-chip" style="--chip-tilt:2deg;background:#660066;">Make</span>
         <span class="acronym-chip" style="--chip-tilt:-1.5deg;background:#884400;">Inclusion</span>
         <span class="acronym-chip" style="--chip-tilt:1deg">Natural</span>
+      </div>
+      <a class="oss-badge" href="https://github.com/juniorterin/torresmin" target="_blank" rel="noopener">
+        🐙 Código aberto no GitHub — juniorterin/torresmin
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-titlebar">❓ O que é o TorrESMIN</div>
+      <div class="card-body">
+        <p class="field-note" style="font-size:14px;color:#000080;">
+          É um addon de <b>Stremio auto-hospedado</b>: em vez de depender de um serviço de terceiros pra achar e tocar torrents,
+          ele busca nos indexadores que <b>você</b> configurou no seu próprio Prowlarr/Jackett, e manda tocar através do seu
+          próprio TorrServer. Nada passa por servidores de outra pessoa — a busca, o download e o streaming acontecem
+          inteiramente na sua infraestrutura.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-titlebar">⚡ Por que usar isso em vez de outro addon</div>
+      <div class="card-body">
+        <div class="tutorial-list">
+          <div class="tutorial-step">
+            <div class="tutorial-num">🚀</div>
+            <div class="tutorial-text"><b>Alta velocidade, sem fila</b><span>É o seu servidor puxando os peers — nenhum limite de download compartilhado com outros usuários de um serviço de terceiros.</span></div>
+          </div>
+          <div class="tutorial-step">
+            <div class="tutorial-num">🎞️</div>
+            <div class="tutorial-text"><b>Toca sem esperar baixar tudo</b><span>O TorrServer prioriza as peças do torrent pela posição de leitura, então dá pra assistir e pular pra qualquer ponto do vídeo enquanto ele ainda está baixando — sem precisar do arquivo completo no disco.</span></div>
+          </div>
+          <div class="tutorial-step">
+            <div class="tutorial-num">🖥️</div>
+            <div class="tutorial-text"><b>Qualidade de servidor de verdade</b><span>Roda num servidor próprio, dimensionado por você — sem os limites de banda/qualidade de serviços gratuitos de debrid/cache de terceiros.</span></div>
+          </div>
+          <div class="tutorial-step">
+            <div class="tutorial-num">🔒</div>
+            <div class="tutorial-text"><b>Você controla o acesso</b><span>Chaves de acesso próprias, travadas por IP — só quem você autorizar consegue buscar e assistir.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-titlebar">📺 Feito pra TV e celular</div>
+      <div class="card-body">
+        <p class="field-note" style="font-size:14px;color:#000080;margin-bottom:10px;">
+          O TorrESMIN foi pensado pra <b>Smart TVs, Android TV/boxes e celular</b> — esses dispositivos não têm um
+          cliente de torrent decente embutido no player, então buscar e tocar via um servidor próprio (com seek de verdade,
+          sem esperar baixar tudo) resolve um problema real. No <b>Stremio de PC/notebook</b> isso é menos necessário: a versão
+          desktop já vem com uma engine de torrent própria bastante boa, então instalar este addon lá traz pouca vantagem.
+        </p>
+        <p class="field-note" style="font-size:14px;color:#000080;">
+          <b>Antes de escolher um stream 4K/HEVC/AV1:</b> confirme se o seu aparelho decodifica esse formato <em>por
+          hardware</em>. A maioria das Smart TVs e Android TV boxes recentes decodifica H.264 e H.265/HEVC sem problema,
+          mas suporte a AV1 ainda é raro em modelos mais antigos — nesse caso, prefira um release em H.264/H.265 de
+          resolução menor (1080p, por exemplo) em vez de travar tentando reproduzir algo que o hardware não aguenta.
+          Isso não é algo que o addon resolve por você — é uma limitação do próprio aparelho.
+        </p>
       </div>
     </div>
 
@@ -422,6 +516,27 @@
           <div class="tutorial-step">
             <div class="tutorial-num">4</div>
             <div class="tutorial-text"><b>Gere o link e instale no Stremio</b><span>Um clique e o addon já aparece configurado no seu Stremio.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-titlebar">🔰 Primeira vez por aqui?</div>
+      <div class="card-body">
+        <p class="field-note" style="margin-bottom:10px;">Se você nunca configurou um addon assim, é só isso:</p>
+        <div class="tutorial-list">
+          <div class="tutorial-step">
+            <div class="tutorial-num">a</div>
+            <div class="tutorial-text"><b>Peça uma chave de acesso</b><span>Fale com quem administra este servidor (aba "Chave de acesso" logo abaixo) — é uma senha pessoal que só funciona a partir do seu IP.</span></div>
+          </div>
+          <div class="tutorial-step">
+            <div class="tutorial-num">b</div>
+            <div class="tutorial-text"><b>Clique em "Próximo" até o fim</b><span>Os valores padrão de cada passo já funcionam bem — você só precisa ajustar se quiser algo diferente (idioma, qualidade, etc).</span></div>
+          </div>
+          <div class="tutorial-step">
+            <div class="tutorial-num">c</div>
+            <div class="tutorial-text"><b>No último passo, clique em "Instalar no Stremio"</b><span>O Stremio abre sozinho já com o addon configurado. Pronto — busque qualquer filme ou série normalmente.</span></div>
           </div>
         </div>
       </div>
@@ -916,10 +1031,16 @@ function goToSlide(index) {
     b.classList.toggle("done", i < index);
   });
   document.getElementById("step-current").textContent = index + 1;
+  // rótulo/setas do stepper mobile
+  document.getElementById("step-mobile-label").textContent = `${index + 1}/${PANES.length} — ${PANE_META[id][0]}`;
+  document.getElementById("step-prev-arrow").disabled = index === 0;
+  document.getElementById("step-next-arrow").disabled = index === PANES.length - 1;
   // scroll pro topo
   window.scrollTo(0, 0);
   if (id === "catalogs") loadCatalogList();
 }
+document.getElementById("step-prev-arrow").addEventListener("click", () => goToSlide(state.step - 1));
+document.getElementById("step-next-arrow").addEventListener("click", () => goToSlide(state.step + 1));
 function showPane(id) {
   const idx = PANES.indexOf(id);
   if (idx >= 0) goToSlide(idx);
