@@ -15,6 +15,42 @@ const router = express.Router();
 const CATALOG_CACHE_TTL = 6 * 3600;
 const CATALOG_PAGE_SIZE = 100;
 
+// Ao abrir a home, o Stremio pede vários catálogos de uma vez. Sem limite por
+// catálogo, cada um disparava uma requisição por item (até ~100) e o total
+// passava de mil conexões simultâneas ao Cinemeta — que respondia com timeout,
+// os itens viravam null e o catálogo era montado vazio.
+const META_CONCURRENCY = 8;
+
+// Metadado de filme muda muito pouco, e o mesmo título aparece em vários
+// catálogos (5848 itens em 69 listas, com bastante repetição). Guardar por id
+// faz o segundo catálogo que contém aquele filme sair de graça.
+const META_CACHE_TTL = 7 * 24 * 3600;
+
+// Só vale gravar o catálogo montado por 6h se ele ficou realmente completo. Um
+// build degradado gravado com TTL longo era o que fazia o catálogo aparecer
+// vazio e continuar vazio pelo resto do dia.
+const CATALOG_MIN_SUCCESS_RATIO = 0.8;
+const CATALOG_DEGRADED_TTL = 120;
+
+async function mapLimit(items, limit, fn) {
+  const out = new Array(items.length);
+  let i = 0;
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (i < items.length) { const idx = i++; out[idx] = await fn(items[idx]); }
+  }));
+  return out;
+}
+
+async function fetchMeta(type, imdbId) {
+  const key = `cinemeta:${type}:${imdbId}`;
+  const hit = await rc.get(key).catch(() => null);
+  if (hit) { try { return JSON.parse(hit); } catch { /* refaz abaixo */ } }
+  const r = await axios.get(`https://v3-cinemeta.strem.io/meta/${type}/${imdbId}.json`, { timeout: 6000 });
+  const meta = r.data?.meta;
+  if (meta) rc.set(key, JSON.stringify(meta), META_CACHE_TTL).catch(() => {});
+  return meta || null;
+}
+
 router.get("/:userConfig/catalog/:type/:id.json", async (req, res) => {
   const { type, id } = req.params;
   if (!id.startsWith("curated_")) return res.json({ metas: [] });
@@ -33,10 +69,9 @@ router.get("/:userConfig/catalog/:type/:id.json", async (req, res) => {
     }
 
     if (!metas) {
-      metas = (await Promise.all(catalog.items.map(async ({ imdbId }) => {
+      metas = (await mapLimit(catalog.items, META_CONCURRENCY, async ({ imdbId }) => {
         try {
-          const r = await axios.get(`https://v3-cinemeta.strem.io/meta/${type}/${imdbId}.json`, { timeout: 6000 });
-          const meta = r.data?.meta;
+          const meta = await fetchMeta(type, imdbId);
           if (!meta) return null;
           const enriched = ptBr ? await enrichMetaPtBr(meta, imdbId, type) : meta;
           return {
@@ -51,8 +86,16 @@ router.get("/:userConfig/catalog/:type/:id.json", async (req, res) => {
             genres:      enriched.genres,
           };
         } catch { return null; }
-      }))).filter(m => m && m.name);
-      rc.set(cacheKey, JSON.stringify(metas), CATALOG_CACHE_TTL).catch(() => {});
+      })).filter(m => m && m.name);
+
+      // Build incompleto não pode ocupar as próximas 6h: guarda por 2min só para
+      // não martelar o Cinemeta, e tenta montar completo de novo em seguida.
+      const total = catalog.items.length;
+      const complete = total === 0 || metas.length / total >= CATALOG_MIN_SUCCESS_RATIO;
+      if (!complete) {
+        console.warn(`[Catalogo] ${slug}: apenas ${metas.length}/${total} itens resolvidos — cache curto (${CATALOG_DEGRADED_TTL}s)`);
+      }
+      rc.set(cacheKey, JSON.stringify(metas), complete ? CATALOG_CACHE_TTL : CATALOG_DEGRADED_TTL).catch(() => {});
     }
 
     const skip = Math.max(0, parseInt(req.query.skip, 10) || 0);
