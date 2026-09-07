@@ -101,6 +101,20 @@
     padding: 4px 8px; display: flex; align-items: center; gap: 6px;
   }
   .card-body { padding: 14px 16px; }
+  /* Área de desenvolvedor — visualmente separada do conteúdo do usuário final */
+  .card.dev { background: #c8ccd4; }
+  .card.dev .card-titlebar { background: linear-gradient(90deg, #004400, #10a010); }
+  .dev-tag {
+    display: inline-block; background: #004400; color: #b6ffb6;
+    font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold;
+    letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px 7px; margin-bottom: 10px; border: 1px outset #10a010;
+  }
+  .dev-stack {
+    font-family: 'Courier New', monospace; font-size: 12px; color: #003300;
+    background: #ffffff; border: 2px inset #808080;
+    padding: 8px 10px; margin: 10px 0; line-height: 1.6;
+  }
   .card-head {
     display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid #808080; padding-bottom: 8px; margin-bottom: 12px;
@@ -466,7 +480,7 @@
   <!-- ── Passo 1: Início ── -->
   <section class="slide on" id="slide-home">
     <div class="topline" style="margin-bottom:16px;">
-      <p class="lede">TorrESMIN busca em Prowlarr/Jackett e transmite pelo TorrServer, com seek de verdade. Este passo a passo configura tudo — menos de 2 minutos.</p>
+      <p class="lede">Assista filmes e séries no seu Stremio — na TV, no celular ou no iPhone — sem esperar download nenhum terminar. Este passo a passo configura tudo pra você em menos de 2 minutos.</p>
       <div class="acronym-row">
         <span class="acronym-chip" style="--chip-tilt:-2deg">Torrent</span>
         <span class="acronym-chip" style="--chip-tilt:1deg;background:#880000;">Entertainment</span>
@@ -475,42 +489,43 @@
         <span class="acronym-chip" style="--chip-tilt:-1.5deg;background:#884400;">Inclusion</span>
         <span class="acronym-chip" style="--chip-tilt:1deg">Natural</span>
       </div>
-      <a class="oss-badge" href="https://github.com/juniorterin/torresmin" target="_blank" rel="noopener">
-        🐙 Código aberto no GitHub — juniorterin/torresmin
-      </a>
     </div>
 
     <div class="card">
       <div class="card-titlebar">❓ O que é o TorrESMIN</div>
       <div class="card-body">
+        <p class="field-note" style="font-size:14px;color:#000080;margin-bottom:10px;">
+          É um complemento pro <b>Stremio</b> — o app onde você assiste filmes e séries. Depois de instalado, você
+          procura um título normalmente e ele aparece pronto pra dar play, com as opções de qualidade
+          (1080p, 4K, dublado, legendado) listadas na tela.
+        </p>
         <p class="field-note" style="font-size:14px;color:#000080;">
-          É um addon de <b>Stremio auto-hospedado</b>: em vez de depender de um serviço de terceiros pra achar e tocar torrents,
-          ele busca nos indexadores que <b>você</b> configurou no seu próprio Prowlarr/Jackett, e manda tocar através do seu
-          próprio TorrServer. Nada passa por servidores de outra pessoa — a busca, o download e o streaming acontecem
-          inteiramente na sua infraestrutura.
+          A diferença é que <b>não existe espera</b>: o vídeo começa na hora e você pode avançar ou voltar pra
+          qualquer ponto, como no Netflix. Quem faz o trabalho pesado é um servidor particular —
+          o seu aparelho só recebe o vídeo pronto, então até TV e iPhone funcionam bem.
         </p>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-titlebar">⚡ Por que usar isso em vez de outro addon</div>
+      <div class="card-titlebar">⚡ O que muda pra você</div>
       <div class="card-body">
         <div class="tutorial-list">
           <div class="tutorial-step">
-            <div class="tutorial-num">🚀</div>
-            <div class="tutorial-text"><b>Alta velocidade, sem fila</b><span>É o seu servidor puxando os peers — nenhum limite de download compartilhado com outros usuários de um serviço de terceiros.</span></div>
+            <div class="tutorial-num">▶️</div>
+            <div class="tutorial-text"><b>Começa na hora</b><span>Sem fila, sem "preparando seu arquivo", sem esperar download terminar. Clicou, tocou.</span></div>
           </div>
           <div class="tutorial-step">
-            <div class="tutorial-num">🎞️</div>
-            <div class="tutorial-text"><b>Toca sem esperar baixar tudo</b><span>O TorrServer prioriza as peças do torrent pela posição de leitura, então dá pra assistir e pular pra qualquer ponto do vídeo enquanto ele ainda está baixando — sem precisar do arquivo completo no disco.</span></div>
+            <div class="tutorial-num">⏩</div>
+            <div class="tutorial-text"><b>Avança e volta como no Netflix</b><span>Pulou pro meio do filme? Ele carrega direto daquele ponto, sem recomeçar do zero.</span></div>
           </div>
           <div class="tutorial-step">
-            <div class="tutorial-num">🖥️</div>
-            <div class="tutorial-text"><b>Qualidade de servidor de verdade</b><span>Roda num servidor próprio, dimensionado por você — sem os limites de banda/qualidade de serviços gratuitos de debrid/cache de terceiros.</span></div>
+            <div class="tutorial-num">🎚️</div>
+            <div class="tutorial-text"><b>Você escolhe a qualidade</b><span>1080p, 4K, dublado, legendado — as opções aparecem listadas e você decide qual usar em cada título.</span></div>
           </div>
           <div class="tutorial-step">
             <div class="tutorial-num">🔒</div>
-            <div class="tutorial-text"><b>Você controla o acesso</b><span>Chaves de acesso próprias, travadas por IP — só quem você autorizar consegue buscar e assistir.</span></div>
+            <div class="tutorial-text"><b>Só você usa a sua chave</b><span>Seu acesso é pessoal e trava no seu IP no primeiro uso — ninguém consegue usar o seu link por aí.</span></div>
           </div>
         </div>
       </div>
@@ -532,11 +547,10 @@
           basicamente a única forma de assistir torrents num iPhone/iPad sem depender de serviços de terceiros.
         </p>
         <p class="field-note" style="font-size:14px;color:#000080;">
-          <b>Antes de escolher um stream 4K/HEVC/AV1:</b> confirme se o seu aparelho decodifica esse formato <em>por
-          hardware</em>. A maioria das Smart TVs e Android TV boxes recentes decodifica H.264 e H.265/HEVC sem problema,
-          mas suporte a AV1 ainda é raro em modelos mais antigos — nesse caso, prefira um release em H.264/H.265 de
-          resolução menor (1080p, por exemplo) em vez de travar tentando reproduzir algo que o hardware não aguenta.
-          Isso não é algo que o addon resolve por você — é uma limitação do próprio aparelho.
+          <b>Dica se o vídeo travar ou não abrir:</b> não é o addon com problema — é o aparelho que não sabe
+          abrir aquele formato. Volte na lista e escolha outra opção, de preferência uma <b>1080p</b>. Se o nome
+          do stream tiver <b>AV1</b>, evite: é um formato novo que TVs e aparelhos mais antigos ainda não tocam.
+          Os marcados como <b>H.264</b> são os que funcionam em praticamente tudo.
         </p>
       </div>
     </div>
@@ -591,6 +605,40 @@
       <div class="card-body">
         <p class="field-note">Peça essa chave a quem administra o servidor. Ela trava automaticamente no seu IP no primeiro uso.</p>
         <input type="text" id="accessKey" placeholder="key_xxxxxxxxxxxxxxxxxxxx">
+      </div>
+    </div>
+
+    <div class="card dev">
+      <div class="card-titlebar">👨‍💻 Área do desenvolvedor</div>
+      <div class="card-body">
+        <span class="dev-tag">Daqui pra baixo é conteúdo técnico</span>
+        <p class="field-note" style="font-size:14px;color:#003300;margin-bottom:10px;">
+          Se você só quer assistir, pode ignorar este bloco — é só clicar em <b>Próximo</b> e seguir o passo a passo.
+          Esta parte é para quem quer <b>hospedar a própria instância</b>, contribuir com o código ou entender como
+          a coisa funciona por dentro.
+        </p>
+        <p class="field-note" style="font-size:14px;color:#003300;margin-bottom:4px;">
+          O <b>TorrESMIN é open source, sob licença MIT</b> — você pode usar, modificar e redistribuir à vontade,
+          mantendo os créditos. É um addon de Stremio auto-hospedado escrito em <b>Node.js/Express</b>: busca
+          torrents nos indexadores do seu próprio <b>Prowlarr/Jackett</b>, resolve o infohash, ranqueia os
+          resultados e entrega o vídeo por <b>TorrServer</b>, que prioriza as peças do torrent pela posição de
+          leitura — é isso que permite seek sem baixar o arquivo inteiro. Todo o tráfego passa pelo addon, que é
+          quem valida a chave de acesso; o TorrServer nunca é exposto à internet.
+        </p>
+        <div class="dev-stack">
+          escopo &nbsp;→ &nbsp;Prowlarr/Jackett para busca, TorrServer para playback<br>
+          sem &nbsp;&nbsp;&nbsp;&nbsp;→ &nbsp;Real-Debrid, TorBox, StremThru ou P2P puro<br>
+          deploy&nbsp;→ &nbsp;Docker Compose (Redis + Prowlarr + TorrServer + addon)<br>
+          extras&nbsp;→ &nbsp;catálogos curados, painel /admin, chaves por IP
+        </div>
+        <p class="field-note" style="font-size:13px;color:#003300;margin-bottom:10px;">
+          O repositório traz o <code>docker-compose.yaml</code> pronto, as variáveis de ambiente documentadas e
+          guias aprofundados de cada parte do sistema (pipeline de streaming, persistência, autenticação,
+          catálogos). Issues e pull requests são bem-vindos.
+        </p>
+        <a class="oss-badge" href="https://github.com/juniorterin/torresmin" target="_blank" rel="noopener">
+          🐙 Ver o código no GitHub — juniorterin/torresmin
+        </a>
       </div>
     </div>
 
