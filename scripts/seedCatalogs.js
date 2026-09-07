@@ -2,17 +2,32 @@
 require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { createCatalog, addCatalogItem, listCatalogs } = require("../catalogs");
+const { createCatalog, addCatalogItem, listCatalogs, getCatalog, replaceCatalogItems } = require("../catalogs");
 
-// Roda uma vez pra popular os catálogos curados com dados reais. Não é rota
-// HTTP -- roda direto: `node scripts/seedCatalogs.js` (compartilha o mesmo
-// ambiente do app: CONFIG_DATA_DIR/CONFIG_DATABASE_URL etc.). Idempotente:
-// pode rodar de novo à vontade sem duplicar catálogo ou item.
+// Popula os catálogos curados a partir de scripts/seed-data/<slug>.json. Não é
+// rota HTTP -- roda direto: `node scripts/seedCatalogs.js` (compartilha o mesmo
+// ambiente do app: CONFIG_DATA_DIR/CONFIG_DATABASE_URL etc.).
 //
-// Cada arquivo em scripts/seed-data/<slug>.json é um array de {title, year,
-// imdbId} -- o imdbId vem de pesquisa real feita à parte (Cinemeta não tem
-// endpoint público de busca por título, só /meta/<type>/<imdbId>.json — não
-// dá pra resolver aqui, tem que já vir resolvido no arquivo).
+// Cada arquivo é um array de {title, year, imdbId}. O imdbId precisa já vir
+// resolvido -- use `node scripts/verifyCatalogs.js` para conferir se cada id
+// aponta mesmo para aquele título/ano antes de semear.
+//
+// DOIS MODOS, e a diferença importa:
+//
+//   node scripts/seedCatalogs.js             (aditivo, padrão)
+//   node scripts/seedCatalogs.js --replace   (espelha o arquivo)
+//
+// O modo aditivo só acrescenta: é idempotente e nunca duplica, mas também
+// nunca corrige nem remove. Um id trocado no arquivo faz o catálogo ficar com
+// OS DOIS, o certo e o errado; uma entrada apagada do arquivo continua no
+// store para sempre. Foi assim que o store acumulou ~1000 itens a mais que os
+// arquivos depois de uma rodada de correções.
+//
+// --replace reescreve a lista de itens de cada catálogo para ser exatamente o
+// que está no arquivo. Preserva id/nome/tipo/order/createdAt do registro
+// existente (a posição na home não muda) e invalida o cache. É destrutivo por
+// definição: o que não estiver no arquivo semente deixa de existir, inclusive
+// itens adicionados à mão pelo /admin.
 
 const SEED_DIR = path.join(__dirname, "seed-data");
 
@@ -108,6 +123,23 @@ const CATALOGS = [
   { slug: "hidden_gems_world",         name: "Hidden Gems — World Cinema",                 type: "movie" },
 ];
 
+const REPLACE = process.argv.includes("--replace");
+
+async function replaceCatalog({ slug, name, type }, items) {
+  const before = (await getCatalog(slug))?.items?.length ?? 0;
+
+  const valid = items.filter(i => /^tt\d{5,10}$/.test(i.imdbId || ""));
+  const invalid = items.length - valid.length;
+
+  const record = await replaceCatalogItems(slug, valid.map(i => i.imdbId), { name, type });
+
+  console.log(
+    `[seed] ${slug}: ${before} -> ${record.items.length} itens` +
+    (invalid ? ` (${invalid} sem id válido, ignorados)` : "") +
+    (before === 0 ? " (catálogo criado)" : "")
+  );
+}
+
 async function seedCatalog({ slug, name, type }) {
   const file = path.join(SEED_DIR, `${slug}.json`);
   if (!fs.existsSync(file)) {
@@ -119,6 +151,8 @@ async function seedCatalog({ slug, name, type }) {
     console.log(`[seed] ${slug}: arquivo vazio, pulando`);
     return;
   }
+
+  if (REPLACE) return await replaceCatalog({ slug, name, type }, items);
 
   const existing = await listCatalogs();
   if (!existing.some(c => c.id === slug)) {
@@ -151,6 +185,9 @@ async function seedCatalog({ slug, name, type }) {
 }
 
 async function main() {
+  console.log(REPLACE
+    ? "[seed] modo --replace: cada catálogo passa a espelhar o arquivo semente (itens fora dele são removidos)"
+    : "[seed] modo aditivo: só acrescenta o que falta — use --replace para corrigir ids trocados ou remover entradas");
   for (const cat of CATALOGS) {
     await seedCatalog(cat);
   }

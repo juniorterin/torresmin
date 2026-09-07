@@ -194,6 +194,46 @@ async function addCatalogItem(id, imdbId) {
   return record;
 }
 
+// Troca a lista inteira de itens de uma vez, criando o catálogo se não existir.
+//
+// Existe porque addCatalogItem só acrescenta: para fazer o store espelhar uma
+// lista de origem (o caso do scripts/seedCatalogs.js --replace) seria preciso
+// diffar e remover item a item, cada remoção gravando o registro de novo. Aqui
+// é uma gravação só, e os metadados do catálogo (nome, tipo, posição na home,
+// data de criação) são preservados quando ele já existe.
+//
+// Destrutivo por natureza: o que não vier em `imdbIds` deixa de existir.
+async function replaceCatalogItems(id, imdbIds, meta = {}) {
+  validateSlug(id);
+  const current = await getCatalog(id);
+  const now = Date.now();
+
+  const items = [];
+  const seen = new Set();
+  for (const imdbId of imdbIds) {
+    validateImdbId(imdbId);
+    if (seen.has(imdbId)) continue;
+    seen.add(imdbId);
+    // Mantém o addedAt de quem já estava lá, para o histórico não zerar.
+    const prev = current?.items?.find(it => it.imdbId === imdbId);
+    items.push({ imdbId, addedAt: prev?.addedAt || now });
+  }
+
+  const record = {
+    id,
+    name: current?.name || String(meta.name || id).trim().slice(0, 120),
+    type: current?.type || (meta.type === "series" ? "series" : "movie"),
+    order: current?.order ?? (await listCatalogs()).length,
+    createdAt: current?.createdAt || now,
+    updatedAt: now,
+    items,
+  };
+
+  await saveCatalog(record);
+  bustCache(id);
+  return record;
+}
+
 async function removeCatalogItem(id, imdbId) {
   const record = await getCatalog(id);
   if (!record) throw new Error(`Catálogo '${id}' não encontrado`);
@@ -212,4 +252,5 @@ module.exports = {
   deleteCatalog,
   addCatalogItem,
   removeCatalogItem,
+  replaceCatalogItems,
 };
