@@ -8,8 +8,8 @@ const router = express.Router();
 router.get("/manifest.json", (req, res) => {
   res.json({
     id: "org.torresmin.app", version: "1.0.0", name: "TorrESMIN",
-    logo: `${getPublicBase(req)}/logo.svg`,
-    icon: `${getPublicBase(req)}/logo.svg`,
+    logo: `${getPublicBase(req)}/logo-pixel-static.png`,
+    icon: `${getPublicBase(req)}/logo-pixel-static.png`,
     description: "Prowlarr/Jackett + TorrServer, com filtros por keywords",
     resources: ["stream", "meta"], types: ["movie", "series"],
     idPrefixes: ["tt", "kitsu:", "rssmovie:", "rssmeta:", "rssitem:"],
@@ -37,8 +37,8 @@ router.get("/:userConfig/manifest.json", async (req, res) => {
 
   res.json({
     id: "org.torresmin.app", version: "1.0.0", name,
-    logo: `${getPublicBase(req)}/logo.svg`,
-    icon: `${getPublicBase(req)}/logo.svg`,
+    logo: `${getPublicBase(req)}/logo-pixel-static.png`,
+    icon: `${getPublicBase(req)}/logo-pixel-static.png`,
     description: "Prowlarr/Jackett + TorrServer, com filtros por keywords",
     resources: [
       "catalog",

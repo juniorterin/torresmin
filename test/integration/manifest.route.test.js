@@ -16,7 +16,7 @@ describe("GET /manifest.json", () => {
     assert.equal(body.id, "org.torresmin.app");
     assert.deepEqual(body.catalogs, []);
     assert.equal(body.behaviorHints.configurationRequired, true);
-    assert.match(body.logo, /\/logo\.svg$/);
+    assert.match(body.logo, /\/logo-pixel-static\.png$/);
   });
 });
 
