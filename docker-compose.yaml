@@ -17,10 +17,12 @@ services:
       - prowlarr-config:/config
 
   torrserver:
-    image: ghcr.io/yourok/torrserver:latest
+    build: ./docker/torrserver-gst
     restart: unless-stopped
     volumes:
       - torrserver-data:/opt/ts
+    devices:
+      - /dev/dri:/dev/dri
     mem_limit: 5g
     ports:
       - "6881:6881"

@@ -24,7 +24,7 @@ services:
       - torresmin-net
 
   torrserver:
-    image: ghcr.io/yourok/torrserver:latest
+    build: ./docker/torrserver-gst
     container_name: torresmin-torrserver
     restart: unless-stopped
     volumes:
