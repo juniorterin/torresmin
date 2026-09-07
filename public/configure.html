@@ -232,11 +232,16 @@
   .stream-preview { border-top: 2px ridge #808080; padding-top: 14px; }
   .sp-label { font-size: 12px; color: #444; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 8px; }
   .stream-card {
-    background: #fffbe6; border: 2px ridge #808080; padding: 12px;
+    background: #fffbe6; border: 2px ridge #808080; padding: 0;
     font-family: 'Courier New', monospace; font-size: 13px;
+    display: flex; align-items: stretch;
   }
-  .sc-name { color: #000080; font-weight: bold; white-space: pre-line; margin-bottom: 6px; }
-  .sc-desc { color: #444; white-space: pre-line; }
+  .sc-name {
+    color: #000080; font-weight: bold; white-space: pre-line;
+    padding: 12px; flex: 0 0 34%; min-width: 90px;
+    border-right: 2px ridge #808080;
+  }
+  .sc-desc { color: #444; white-space: pre-line; padding: 12px; flex: 1 1 auto; min-width: 0; }
 
   /* ── Preview / sort ──────────────────────── */
   .preview-list { display: flex; flex-direction: column; gap: 6px; }
@@ -720,7 +725,7 @@
             </div>
           </div>
           <div class="stream-preview">
-            <span class="sp-label">Prévia ao vivo</span>
+            <span class="sp-label">Prévia ao vivo — como aparece no Stremio (nome à esquerda, descrição à direita)</span>
             <div class="stream-card">
               <div class="sc-name" id="preview-name">TorrESMIN\n🔵 FHD</div>
               <div class="sc-desc" id="preview-desc">Carregando…</div>
