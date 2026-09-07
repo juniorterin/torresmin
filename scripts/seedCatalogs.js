@@ -115,11 +115,6 @@ const CATALOGS = [
   // ── Movimentos (2ª rodada) ───────────────────────────────────────────────────
   { slug: "movement_japanese_new_wave",name: "Movimento — Japanese New Wave",              type: "movie" },
   { slug: "movement_iran_new_wave",    name: "Movimento — Iranian New Wave",               type: "movie" },
-  { slug: "movement_romanian_new_wave",name: "Movimento — Romanian New Wave",              type: "movie" },
-  // ── World Cinema (2ª rodada) ─────────────────────────────────────────────────
-  { slug: "world_taiwan_hk",           name: "World Cinema — Taiwan & Hong Kong",          type: "movie" },
-  { slug: "world_sweden",              name: "World Cinema — Suécia",                      type: "movie" },
-  { slug: "world_poland",              name: "World Cinema — Polônia",                     type: "movie" },
   // ── Festivais (2ª rodada) ────────────────────────────────────────────────────
   { slug: "cannes_grand_prix",         name: "Cannes — Grand Prix",                        type: "movie" },
   { slug: "cannes_palme_extended",     name: "Cannes — Palme d'Or Completo",               type: "movie" },
@@ -130,7 +125,6 @@ const CATALOGS = [
   { slug: "concept_coming_of_age",     name: "Concept — Coming of Age",                    type: "movie" },
   { slug: "concept_urban_loneliness",  name: "Concept — Solidão Urbana",                   type: "movie" },
   { slug: "concept_road_movies",       name: "Concept — Road Movies",                      type: "movie" },
-  { slug: "hidden_gems_world",         name: "Hidden Gems — World Cinema",                 type: "movie" },
 ];
 
 const REBUILD = process.argv.includes("--rebuild");
