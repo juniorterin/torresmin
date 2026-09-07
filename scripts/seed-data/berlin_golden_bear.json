@@ -1,102 +1,422 @@
 [
-  { "title": "Four in a Jeep", "year": 1951, "imdbId": "tt0043588" },
-  { "title": "She Danced One Summer", "year": 1952, "imdbId": "tt0045177" },
-  { "title": "The Wages of Fear", "year": 1953, "imdbId": "tt0046268" },
-  { "title": "Hobson's Choice", "year": 1954, "imdbId": "tt0047041" },
-  { "title": "The Rats", "year": 1955, "imdbId": "tt0048697" },
-  { "title": "Invitation to the Dance", "year": 1956, "imdbId": "tt0049374" },
-  { "title": "12 Angry Men", "year": 1957, "imdbId": "tt0050083" },
-  { "title": "Wild Strawberries", "year": 1958, "imdbId": "tt0052119" },
-  { "title": "The Cousins", "year": 1959, "imdbId": "tt0052741" },
-  { "title": "Lazarillo de Tormes", "year": 1960, "imdbId": "tt0053989" },
-  { "title": "La notte", "year": 1961, "imdbId": "tt0055218" },
-  { "title": "A Kind of Loving", "year": 1962, "imdbId": "tt0056060" },
-  { "title": "Il Diavolo", "year": 1963, "imdbId": "tt0056944" },
-  { "title": "Dry Summer", "year": 1964, "imdbId": "tt0057992" },
-  { "title": "Alphaville", "year": 1965, "imdbId": "tt0058898" },
-  { "title": "Cul-de-sac", "year": 1966, "imdbId": "tt0060096" },
-  { "title": "Le depart", "year": 1967, "imdbId": "tt0061707" },
-  { "title": "Who Saw Him Die?", "year": 1968, "imdbId": "tt0063726" },
-  { "title": "Early Works", "year": 1969, "imdbId": "tt0063872" },
-  { "title": "The Garden of the Finzi-Continis", "year": 1971, "imdbId": "tt0067163" },
-  { "title": "The Canterbury Tales", "year": 1972, "imdbId": "tt0068220" },
-  { "title": "Distant Thunder", "year": 1973, "imdbId": "tt0069921" },
-  { "title": "The Apprenticeship of Duddy Kravitz", "year": 1974, "imdbId": "tt0071054" },
-  { "title": "Adoption", "year": 1975, "imdbId": "tt0072504" },
-  { "title": "Buffalo Bill and the Indians", "year": 1976, "imdbId": "tt0074264" },
-  { "title": "Ascent", "year": 1977, "imdbId": "tt0075404" },
-  { "title": "Las truchas", "year": 1978, "imdbId": "tt0078348" },
-  { "title": "David", "year": 1979, "imdbId": "tt0078867" },
-  { "title": "Heartland", "year": 1979, "imdbId": "tt0079382" },
-  { "title": "Palermo or Wolfsburg", "year": 1980, "imdbId": "tt0081299" },
-  { "title": "Mephisto", "year": 1981, "imdbId": "tt0082766" },
-  { "title": "Veronika Voss", "year": 1982, "imdbId": "tt0084917" },
-  { "title": "Ascendancy", "year": 1983, "imdbId": "tt0083582" },
-  { "title": "Love Streams", "year": 1984, "imdbId": "tt0087563" },
-  { "title": "Wetherby", "year": 1985, "imdbId": "tt0090317" },
-  { "title": "Stammheim", "year": 1986, "imdbId": "tt0091978" },
-  { "title": "The Theme", "year": 1987, "imdbId": "tt0094190" },
-  { "title": "Red Sorghum", "year": 1988, "imdbId": "tt0094705" },
-  { "title": "Rain Man", "year": 1989, "imdbId": "tt0095953" },
-  { "title": "Music Box", "year": 1990, "imdbId": "tt0097986" },
-  { "title": "The House of Smiles", "year": 1991, "imdbId": "tt0102048" },
-  { "title": "Grand Canyon", "year": 1992, "imdbId": "tt0104036" },
-  { "title": "Women from the Lake of Scented Souls", "year": 1993, "imdbId": "tt0108742" },
-  { "title": "The Wedding Banquet", "year": 1993, "imdbId": "tt0108200" },
-  { "title": "In the Name of the Father", "year": 1994, "imdbId": "tt0107207" },
-  { "title": "The Bait", "year": 1995, "imdbId": "tt0109553" },
-  { "title": "Sense and Sensibility", "year": 1996, "imdbId": "tt0114388" },
-  { "title": "The People vs. Larry Flynt", "year": 1997, "imdbId": "tt0117318" },
-  { "title": "Central Station", "year": 1998, "imdbId": "tt0140888" },
-  { "title": "The Thin Red Line", "year": 1999, "imdbId": "tt0120863" },
-  { "title": "Magnolia", "year": 2000, "imdbId": "tt0175880" },
-  { "title": "Intimacy", "year": 2001, "imdbId": "tt0258017" },
-  { "title": "Spirited Away", "year": 2002, "imdbId": "tt0245429" },
-  { "title": "In This World", "year": 2003, "imdbId": "tt0337727" },
-  { "title": "Head-On", "year": 2004, "imdbId": "tt0347478" },
-  { "title": "U-Carmen eKhayelitsha", "year": 2005, "imdbId": "tt0443444" },
-  { "title": "Grbavica", "year": 2006, "imdbId": "tt0464029" },
-  { "title": "Tuya's Marriage", "year": 2007, "imdbId": "tt0808248" },
-  { "title": "Tropa de Elite", "year": 2008, "imdbId": "tt0861739" },
-  { "title": "The Milk of Sorrow", "year": 2009, "imdbId": "tt1291367" },
-  { "title": "Honey", "year": 2010, "imdbId": "tt1571724" },
-  { "title": "A Separation", "year": 2011, "imdbId": "tt1832382" },
-  { "title": "Cesare deve morire", "year": 2012, "imdbId": "tt2244763" },
-  { "title": "Child's Pose", "year": 2013, "imdbId": "tt2526224" },
-  { "title": "Black Coal, Thin Ice", "year": 2014, "imdbId": "tt3469910" },
-  { "title": "Taxi", "year": 2015, "imdbId": "tt4253026" },
-  { "title": "Fire at Sea", "year": 2016, "imdbId": "tt3652526" },
-  { "title": "On Body and Soul", "year": 2017, "imdbId": "tt5690360" },
-  { "title": "Touch Me Not", "year": 2018, "imdbId": "tt4949112" },
-  { "title": "Synonyms", "year": 2019, "imdbId": "tt8005374" },
-  { "title": "There Is No Evil", "year": 2020, "imdbId": "tt11697844" },
-  { "title": "Bad Luck Banging or Loony Porn", "year": 2021, "imdbId": "tt14033502" },
-  { "title": "Alcarras", "year": 2022, "imdbId": "tt14000694" },
-  { "title": "On the Adamant", "year": 2023, "imdbId": "tt22839402" },
-  { "title": "A Traveler's Needs", "year": 2024, "imdbId": "tt32226284" },
-  { "title": "Love Is the Devil", "year": 1998, "imdbId": "tt0119577" },
-  { "title": "The Reader", "year": 2008, "imdbId": "tt0976051" },
-  { "title": "Capernaum", "year": 2018, "imdbId": "tt8267604" },
-  { "title": "Never Rarely Sometimes Always", "year": 2020, "imdbId": "tt7772582" },
-  { "title": "Petite Maman", "year": 2021, "imdbId": "tt13204490" },
-  { "title": "Saint Omer", "year": 2022, "imdbId": "tt20900568" },
-  { "title": "Past Lives", "year": 2023, "imdbId": "tt21082852" },
-  { "title": "All We Imagine as Light", "year": 2024, "imdbId": "tt21067398" },
-  { "title": "Portrait of a Lady on Fire", "year": 2019, "imdbId": "tt8613070" },
-  { "title": "Drive My Car", "year": 2021, "imdbId": "tt14039582" },
-  { "title": "Aftersun", "year": 2022, "imdbId": "tt19770238" },
-  { "title": "The Zone of Interest", "year": 2023, "imdbId": "tt7160372" },
-  { "title": "Moonlight", "year": 2016, "imdbId": "tt4975722" },
-  { "title": "Loveless", "year": 2017, "imdbId": "tt6304162" },
-  { "title": "Les Miserables", "year": 2019, "imdbId": "tt9302555" },
-  { "title": "I, Daniel Blake", "year": 2016, "imdbId": "tt5168192" },
-  { "title": "Son of Saul", "year": 2015, "imdbId": "tt3808342" },
-  { "title": "White God", "year": 2014, "imdbId": "tt2802282" },
-  { "title": "The Congress", "year": 2013, "imdbId": "tt1821348" },
-  { "title": "Amour", "year": 2012, "imdbId": "tt1602620" },
-  { "title": "The Artist", "year": 2011, "imdbId": "tt1655442" },
-  { "title": "The Ghost Writer", "year": 2010, "imdbId": "tt1139328" },
-  { "title": "The Baader Meinhof Complex", "year": 2008, "imdbId": "tt0765432" },
-  { "title": "4 Months, 3 Weeks and 2 Days", "year": 2007, "imdbId": "tt1032846" },
-  { "title": "Summer Hours", "year": 2008, "imdbId": "tt1132214" }
+  {
+    "title": "Four in a Jeep",
+    "year": 1951,
+    "imdbId": "tt0043588"
+  },
+  {
+    "title": "She Danced One Summer",
+    "year": 1952,
+    "imdbId": "tt0045177"
+  },
+  {
+    "title": "The Wages of Fear",
+    "year": 1953,
+    "imdbId": "tt0046268"
+  },
+  {
+    "title": "Hobson's Choice",
+    "year": 1954,
+    "imdbId": "tt0047041"
+  },
+  {
+    "title": "The Rats",
+    "year": 1955,
+    "imdbId": "tt0048697"
+  },
+  {
+    "title": "Invitation to the Dance",
+    "year": 1956,
+    "imdbId": "tt0049374"
+  },
+  {
+    "title": "12 Angry Men",
+    "year": 1957,
+    "imdbId": "tt0050083"
+  },
+  {
+    "title": "Wild Strawberries",
+    "year": 1958,
+    "imdbId": "tt0052119"
+  },
+  {
+    "title": "The Cousins",
+    "year": 1959,
+    "imdbId": "tt0052741"
+  },
+  {
+    "title": "Lazarillo de Tormes",
+    "year": 1960,
+    "imdbId": "tt0053989"
+  },
+  {
+    "title": "La notte",
+    "year": 1961,
+    "imdbId": "tt0055218"
+  },
+  {
+    "title": "A Kind of Loving",
+    "year": 1962,
+    "imdbId": "tt0056060"
+  },
+  {
+    "title": "Bushido, Samurai Saga",
+    "year": 1963,
+    "imdbId": "tt0055816"
+  },
+  {
+    "title": "To Bed or Not to Bed",
+    "year": 1963,
+    "imdbId": "tt0056995"
+  },
+  {
+    "title": "Dry Summer",
+    "year": 1964,
+    "imdbId": "tt0057992"
+  },
+  {
+    "title": "Alphaville",
+    "year": 1965,
+    "imdbId": "tt0058898"
+  },
+  {
+    "title": "Cul-de-sac",
+    "year": 1966,
+    "imdbId": "tt0060096"
+  },
+  {
+    "title": "Le depart",
+    "year": 1967,
+    "imdbId": "tt0061707"
+  },
+  {
+    "title": "Who Saw Him Die?",
+    "year": 1968,
+    "imdbId": "tt0063726"
+  },
+  {
+    "title": "Early Works",
+    "year": 1969,
+    "imdbId": "tt0063872"
+  },
+  {
+    "title": "The Garden of the Finzi-Continis",
+    "year": 1971,
+    "imdbId": "tt0067163"
+  },
+  {
+    "title": "The Canterbury Tales",
+    "year": 1972,
+    "imdbId": "tt0068220"
+  },
+  {
+    "title": "Distant Thunder",
+    "year": 1973,
+    "imdbId": "tt0069921"
+  },
+  {
+    "title": "The Apprenticeship of Duddy Kravitz",
+    "year": 1974,
+    "imdbId": "tt0071054"
+  },
+  {
+    "title": "Adoption",
+    "year": 1975,
+    "imdbId": "tt0072504"
+  },
+  {
+    "title": "Buffalo Bill and the Indians",
+    "year": 1976,
+    "imdbId": "tt0074264"
+  },
+  {
+    "title": "The Ascent",
+    "year": 1977,
+    "imdbId": "tt0075404"
+  },
+  {
+    "title": "Las truchas",
+    "year": 1978,
+    "imdbId": "tt0078348"
+  },
+  {
+    "title": "Ascensor",
+    "year": 1978,
+    "imdbId": "tt0425756"
+  },
+  {
+    "title": "What Max Said",
+    "year": 1978,
+    "imdbId": "tt0076520"
+  },
+  {
+    "title": "David",
+    "year": 1979,
+    "imdbId": "tt0078867"
+  },
+  {
+    "title": "Heartland",
+    "year": 1980,
+    "imdbId": "tt0079382"
+  },
+  {
+    "title": "Palermo or Wolfsburg",
+    "year": 1980,
+    "imdbId": "tt0081299"
+  },
+  {
+    "title": "Deprisa, deprisa",
+    "year": 1981,
+    "imdbId": "tt0082259"
+  },
+  {
+    "title": "Veronika Voss",
+    "year": 1982,
+    "imdbId": "tt0084917"
+  },
+  {
+    "title": "Ascendancy",
+    "year": 1983,
+    "imdbId": "tt0083582"
+  },
+  {
+    "title": "La colmena",
+    "year": 1983,
+    "imdbId": "tt0083743"
+  },
+  {
+    "title": "Love Streams",
+    "year": 1984,
+    "imdbId": "tt0087563"
+  },
+  {
+    "title": "Wetherby",
+    "year": 1985,
+    "imdbId": "tt0090317"
+  },
+  {
+    "title": "The Woman and the Stranger",
+    "year": 1985,
+    "imdbId": "tt0089169"
+  },
+  {
+    "title": "Stammheim",
+    "year": 1986,
+    "imdbId": "tt0091978"
+  },
+  {
+    "title": "The Theme",
+    "year": 1987,
+    "imdbId": "tt0094190"
+  },
+  {
+    "title": "Red Sorghum",
+    "year": 1988,
+    "imdbId": "tt0094705"
+  },
+  {
+    "title": "Rain Man",
+    "year": 1989,
+    "imdbId": "tt0095953"
+  },
+  {
+    "title": "Music Box",
+    "year": 1990,
+    "imdbId": "tt0097986"
+  },
+  {
+    "title": "Larks on a String",
+    "year": 1990,
+    "imdbId": "tt0064994"
+  },
+  {
+    "title": "The House of Smiles",
+    "year": 1991,
+    "imdbId": "tt0102048"
+  },
+  {
+    "title": "Grand Canyon",
+    "year": 1992,
+    "imdbId": "tt0104036"
+  },
+  {
+    "title": "Women from the Lake of Scented Souls",
+    "year": 1993,
+    "imdbId": "tt0108742"
+  },
+  {
+    "title": "The Wedding Banquet",
+    "year": 1993,
+    "imdbId": "tt0108200"
+  },
+  {
+    "title": "In the Name of the Father",
+    "year": 1994,
+    "imdbId": "tt0107207"
+  },
+  {
+    "title": "The Bait",
+    "year": 1995,
+    "imdbId": "tt0109553"
+  },
+  {
+    "title": "Sense and Sensibility",
+    "year": 1996,
+    "imdbId": "tt0114388"
+  },
+  {
+    "title": "The People vs. Larry Flynt",
+    "year": 1997,
+    "imdbId": "tt0117318"
+  },
+  {
+    "title": "Central Station",
+    "year": 1998,
+    "imdbId": "tt0140888"
+  },
+  {
+    "title": "The Thin Red Line",
+    "year": 1999,
+    "imdbId": "tt0120863"
+  },
+  {
+    "title": "Magnolia",
+    "year": 2000,
+    "imdbId": "tt0175880"
+  },
+  {
+    "title": "Intimacy",
+    "year": 2001,
+    "imdbId": "tt0258017"
+  },
+  {
+    "title": "Spirited Away",
+    "year": 2002,
+    "imdbId": "tt0245429"
+  },
+  {
+    "title": "Bloody Sunday",
+    "year": 2002,
+    "imdbId": "tt0280491"
+  },
+  {
+    "title": "In This World",
+    "year": 2003,
+    "imdbId": "tt0337727"
+  },
+  {
+    "title": "Head-On",
+    "year": 2004,
+    "imdbId": "tt0347478"
+  },
+  {
+    "title": "U-Carmen eKhayelitsha",
+    "year": 2005,
+    "imdbId": "tt0443444"
+  },
+  {
+    "title": "Grbavica",
+    "year": 2006,
+    "imdbId": "tt0464029"
+  },
+  {
+    "title": "Tuya's Marriage",
+    "year": 2007,
+    "imdbId": "tt0808248"
+  },
+  {
+    "title": "Tropa de Elite",
+    "year": 2008,
+    "imdbId": "tt0861739"
+  },
+  {
+    "title": "The Milk of Sorrow",
+    "year": 2009,
+    "imdbId": "tt1291367"
+  },
+  {
+    "title": "Honey",
+    "year": 2010,
+    "imdbId": "tt1571724"
+  },
+  {
+    "title": "A Separation",
+    "year": 2011,
+    "imdbId": "tt1832382"
+  },
+  {
+    "title": "Cesare deve morire",
+    "year": 2012,
+    "imdbId": "tt2244763"
+  },
+  {
+    "title": "Child's Pose",
+    "year": 2013,
+    "imdbId": "tt2526224"
+  },
+  {
+    "title": "Black Coal, Thin Ice",
+    "year": 2014,
+    "imdbId": "tt3469910"
+  },
+  {
+    "title": "Taxi",
+    "year": 2015,
+    "imdbId": "tt4253026"
+  },
+  {
+    "title": "Fire at Sea",
+    "year": 2016,
+    "imdbId": "tt3652526"
+  },
+  {
+    "title": "On Body and Soul",
+    "year": 2017,
+    "imdbId": "tt5690360"
+  },
+  {
+    "title": "Touch Me Not",
+    "year": 2018,
+    "imdbId": "tt4949112"
+  },
+  {
+    "title": "Synonyms",
+    "year": 2019,
+    "imdbId": "tt8005374"
+  },
+  {
+    "title": "There Is No Evil",
+    "year": 2020,
+    "imdbId": "tt11697844"
+  },
+  {
+    "title": "Bad Luck Banging or Loony Porn",
+    "year": 2021,
+    "imdbId": "tt14033502"
+  },
+  {
+    "title": "Alcarras",
+    "year": 2022,
+    "imdbId": "tt14000694"
+  },
+  {
+    "title": "On the Adamant",
+    "year": 2023,
+    "imdbId": "tt22839402"
+  },
+  {
+    "title": "Dahomey",
+    "year": 2024,
+    "imdbId": "tt31015216"
+  },
+  {
+    "title": "Dreams",
+    "year": 2025,
+    "imdbId": "tt30810787"
+  },
+  {
+    "title": "Yellow Letters",
+    "year": 2026,
+    "imdbId": "tt32888226"
+  }
 ]

@@ -15,11 +15,6 @@
     "imdbId": "tt0049233"
   },
   {
-    "title": "Kanal",
-    "year": 1957,
-    "imdbId": "tt0050585"
-  },
-  {
     "title": "The Cranes Are Flying",
     "year": 1958,
     "imdbId": "tt0051554"
@@ -88,11 +83,6 @@
     "title": "The Go-Between",
     "year": 1971,
     "imdbId": "tt0067140"
-  },
-  {
-    "title": "Slaughterhouse-Five",
-    "year": 1972,
-    "imdbId": "tt0069280"
   },
   {
     "title": "Scarecrow",
@@ -187,7 +177,7 @@
   {
     "title": "Pelle the Conqueror",
     "year": 1988,
-    "imdbId": "tt0095765"
+    "imdbId": "tt0093713"
   },
   {
     "title": "Sex, Lies, and Videotape",
@@ -470,38 +460,23 @@
     "imdbId": "tt28607951"
   },
   {
-    "title": "Capernaum",
-    "year": 2018,
-    "imdbId": "tt8267604"
-  },
-  {
-    "title": "Loveless",
-    "year": 2017,
-    "imdbId": "tt6304162"
-  },
-  {
-    "title": "Mommy",
-    "year": 2014,
-    "imdbId": "tt3612616"
-  },
-  {
-    "title": "Les Miserables",
-    "year": 2019,
-    "imdbId": "tt9302555"
-  },
-  {
-    "title": "American Honey",
-    "year": 2016,
-    "imdbId": "tt3416742"
-  },
-  {
-    "title": "Dogtooth",
-    "year": 2009,
-    "imdbId": "tt1379182"
-  },
-  {
     "title": "The Substance",
     "year": 2024,
     "imdbId": "tt17526714"
+  },
+  {
+    "title": "The Working Class Goes to Heaven",
+    "year": 1971,
+    "imdbId": "tt0066919"
+  },
+  {
+    "title": "The Mattei Affair",
+    "year": 1972,
+    "imdbId": "tt0068346"
+  },
+  {
+    "title": "The Tin Drum",
+    "year": 1979,
+    "imdbId": "tt0078875"
   }
 ]
