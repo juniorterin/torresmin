@@ -60,6 +60,16 @@ describe("titleMatchScore / relaxedTitleMatchScore / normalizedTokenOverlap", ()
     assert.equal(sc, 0);
   });
 
+  test("single-letter word in the alias isn't dropped, so an unrelated title sharing only the generic word scores 0", () => {
+    const sc = scoring.titleMatchScore("Diabolical The Epstein Files 2026 1080p WEBRip x265", ["The X-Files"]);
+    assert.equal(sc, 0, `expected no match, got ${sc}`);
+  });
+
+  test("exact match still works when the alias has a meaningful single-letter word", () => {
+    const sc = scoring.titleMatchScore("The X-Files S01E01 1080p BluRay", ["The X-Files"]);
+    assert.ok(sc > 0.8, `expected high score, got ${sc}`);
+  });
+
   test("relaxedTitleMatchScore gives partial credit for partial overlap", () => {
     const sc = scoring.relaxedTitleMatchScore("Shawshank Something Else 2020", ["The Shawshank Redemption"]);
     assert.ok(sc > 0 && sc < 1);

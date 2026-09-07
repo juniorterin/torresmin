@@ -95,7 +95,7 @@ const TITLE_CLEANUP_REGEX = /\b(2160p|1440p|1080p|720p|576p|480p|4k|remux|blu[-.
 // ╔════════════════════════════════════════════════════════════════════╗
 // ║ OTIMIZAÇÃO #2: Cache Set para STOPWORDS                           ║
 // ╚════════════════════════════════════════════════════════════════════╝
-const STOPWORDS = new Set(["the", "movie", "film", "one", "two", "and", "for", "with", "from", "into", "part"]);
+const STOPWORDS = new Set(["the", "a", "i", "movie", "film", "one", "two", "and", "for", "with", "from", "into", "part"]);
 
 const first    = (map, t) => {
   if (!Array.isArray(map) || !t) return null;
@@ -149,7 +149,7 @@ function normalizeTitleTokens(str) {
     .replace(/\s+/g, " ")
     .trim()
     .split(" ")
-    .filter(tok => tok.length >= 3 || /^(?:[a-z]\d|\d[a-z]|[a-z]\d[a-z]|\d[a-z]\d)$/i.test(tok))
+    .filter(tok => tok.length >= 3 || /^(?:[a-z]\d|\d[a-z]|[a-z]\d[a-z]|\d[a-z]\d|[a-z])$/i.test(tok))
     .filter(tok => !STOPWORDS.has(tok));
 }
 
