@@ -34,6 +34,17 @@ services:
     networks:
       - torresmin-net
 
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: torresmin-flaresolverr
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+    ports:
+      - "8191:8191"
+    networks:
+      - torresmin-net
+
   torresmin:
     build:
       context: .

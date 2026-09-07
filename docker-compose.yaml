@@ -26,6 +26,12 @@ services:
       - "6881:6881"
       - "6881:6881/udp"
 
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+
   torresmin:
     build: .
     restart: unless-stopped
