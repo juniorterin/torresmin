@@ -166,7 +166,17 @@ async function proxyStream(req, res, hash, fileId) {
   }
 
   if (req.method === "HEAD" || !upstream.body) return res.end();
-  Readable.fromWeb(upstream.body).pipe(res);
+
+  const stream = Readable.fromWeb(upstream.body);
+  stream.on("error", (err) => {
+    if (!controller.signal.aborted) {
+      console.error("[torrserver] erro ao repassar stream:", err.message);
+    }
+    if (!res.headersSent) res.sendStatus(502);
+    res.destroy();
+  });
+  res.on("error", () => stream.destroy());
+  stream.pipe(res);
 }
 
 module.exports = {

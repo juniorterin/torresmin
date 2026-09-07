@@ -52,7 +52,7 @@ router.get("/:userConfig/play/:jobToken", async (req, res) => {
     const { hash, fileId } = await torrServer.resolvePlayTarget({
       magnet: job.magnet, torrentBuffer, fileIdx: job.fileIdx, fileName: job.fileName,
     });
-    return torrServer.proxyStream(req, res, hash, fileId);
+    return await torrServer.proxyStream(req, res, hash, fileId);
   } catch (err) {
     console.log(`[TorrServer] Falha ao preparar ${job.infoHash}: ${err.message}`);
     if (!res.headersSent) return res.status(503).send(`TorrServer: ${err.message}`);
