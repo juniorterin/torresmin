@@ -764,6 +764,14 @@
             <label class="lbl">Limite de tamanho</label>
             <input type="text" id="videoSizeLimit" placeholder="ex: 2GB, 500MB">
           </div>
+          <div>
+            <label class="lbl">Tempo máximo de busca</label>
+            <div class="range-row">
+              <input type="range" id="slowThreshold" min="1000" max="15000" step="500" value="4000">
+              <span class="range-val" id="slowThreshold-val">4,0s</span>
+            </div>
+            <p class="field-note">Quanto o addon espera pelos indexadores antes de mostrar o que já tem. Menor = resposta mais rápida; maior = mais chance de incluir indexador lento. Quem não responder a tempo continua buscando em segundo plano e entra na próxima busca.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -914,7 +922,21 @@
       <div class="card-titlebar">🏷️ Identidade do addon</div>
       <div class="card-body">
         <label class="lbl">Nome exibido no Stremio</label>
-        <input type="text" id="addonName" placeholder="TorrESMIN">
+        <input type="text" id="addonName" placeholder="TorrESMIN" value="TorrESMIN">
+        <p class="field-note" style="margin-top:8px;">
+          É o nome que aparece na lista de addons do Stremio. Se você pretende instalar
+          <b>mais de uma configuração</b> — uma só com dublados, outra só 4K — vale dar um nome
+          diferente pra cada uma, senão fica impossível saber qual é qual.
+        </p>
+        <div class="chip-row" style="margin-top:10px;margin-bottom:6px;">
+          <button type="button" class="chip name-suggestion">TorrESMIN Dublados</button>
+          <button type="button" class="chip name-suggestion">TorrESMIN Brasil</button>
+          <button type="button" class="chip name-suggestion">TorrESMIN 4K</button>
+          <button type="button" class="chip name-suggestion">TorrESMIN 1080p</button>
+          <button type="button" class="chip name-suggestion">TorrESMIN Legendados</button>
+          <button type="button" class="chip name-suggestion">TorrESMIN Anime</button>
+        </div>
+        <p class="hint">Clique numa sugestão pra usar, ou escreva o seu.</p>
       </div>
     </div>
 
@@ -1234,6 +1256,11 @@ document.getElementById("maxResults").addEventListener("input", (e) => {
   document.getElementById("maxResults-val").textContent = e.target.value;
 });
 
+const fmtSecs = (ms) => (Number(ms) / 1000).toFixed(1).replace(".", ",") + "s";
+document.getElementById("slowThreshold").addEventListener("input", (e) => {
+  document.getElementById("slowThreshold-val").textContent = fmtSecs(e.target.value);
+});
+
 function renderExcludeFilters() {
   const grid = document.getElementById("exclude-filters-grid");
   grid.innerHTML = "";
@@ -1392,6 +1419,17 @@ function onTemplateInput() {
 document.getElementById("nameTemplate").addEventListener("input", onTemplateInput);
 document.getElementById("descriptionTemplate").addEventListener("input", onTemplateInput);
 document.getElementById("addonName").addEventListener("input", schedulePreview);
+
+// Sugestões de nome: preenchem o campo em vez de alternarem estado, então não
+// usam a classe .sel — são atalhos de escrita, não uma seleção persistente.
+document.querySelectorAll(".name-suggestion").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = document.getElementById("addonName");
+    input.value = btn.textContent.trim();
+    input.focus();
+    schedulePreview();
+  });
+});
 document.getElementById("format-reset").addEventListener("click", () => {
   document.getElementById("nameTemplate").value = DEFAULT_NAME_TEMPLATE;
   document.getElementById("descriptionTemplate").value = DEFAULT_DESCRIPTION_TEMPLATE;
@@ -1502,6 +1540,7 @@ function applyPrefs(p) {
   if (Array.isArray(p.priorityIndexers) && p.priorityIndexers.length) { state.priorityIndexers = new Set(p.priorityIndexers); renderPriorityIndexers(); }
   if (p.maxResults) { document.getElementById("maxResults").value = p.maxResults; document.getElementById("maxResults-val").textContent = p.maxResults; }
   if (p.maxResultsPerIndexer !== undefined) document.getElementById("maxResultsPerIndexer").value = p.maxResultsPerIndexer;
+  if (p.slowThreshold) { document.getElementById("slowThreshold").value = p.slowThreshold; document.getElementById("slowThreshold-val").textContent = fmtSecs(p.slowThreshold); }
   if (p.nameTemplate) document.getElementById("nameTemplate").value = p.nameTemplate;
   if (p.descriptionTemplate) document.getElementById("descriptionTemplate").value = p.descriptionTemplate;
   if (SORT_GROUP_KEYS.includes(p.sortGroupBy)) state.sortGroupBy = p.sortGroupBy;
@@ -1532,6 +1571,7 @@ function collectPrefs() {
     priorityIndexers: [...state.priorityIndexers],
     maxResults: Number(document.getElementById("maxResults").value) || 20,
     maxResultsPerIndexer: Number(document.getElementById("maxResultsPerIndexer").value) || 0,
+    slowThreshold: Number(document.getElementById("slowThreshold").value) || 4000,
     nameTemplate: document.getElementById("nameTemplate").value,
     descriptionTemplate: document.getElementById("descriptionTemplate").value,
     sortGroupBy: state.sortGroupBy,
