@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/og/og-1200x630.jpg" alt="TorrESMIN" width="640">
+  <img src="public/og/torresmin-larga.jpg" alt="TorrESMIN" width="640">
 </p>
 
 <h1 align="center">🎬 TorrESMIN</h1>
