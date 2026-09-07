@@ -245,39 +245,14 @@
     "imdbId": "tt2186665"
   },
   {
-    "title": "Florida",
-    "year": 2018,
-    "imdbId": "tt7504154"
-  },
-  {
-    "title": "Dust",
-    "year": 2017,
-    "imdbId": "tt6852710"
-  },
-  {
-    "title": "Mireasma",
-    "year": 2023,
-    "imdbId": "tt26906832"
-  },
-  {
     "title": "The New Year That Never Came",
     "year": 2023,
     "imdbId": "tt33030375"
   },
   {
-    "title": "Teamwork",
-    "year": 2022,
-    "imdbId": "tt16464882"
-  },
-  {
     "title": "Comoara",
     "year": 2015,
     "imdbId": "tt7854312"
-  },
-  {
-    "title": "Ultimul drum spre mare",
-    "year": 2022,
-    "imdbId": "tt15781040"
   },
   {
     "title": "When Evening Falls on Bucharest or Metabolism",
@@ -300,28 +275,23 @@
     "imdbId": "tt1895466"
   },
   {
-    "title": "East of the Sun",
-    "year": 2019,
-    "imdbId": "tt7882174"
-  },
-  {
-    "title": "Ploaia în septembrie",
-    "year": 2023,
-    "imdbId": "tt26769208"
-  },
-  {
-    "title": "Born in Deir Yassin",
-    "year": 2022,
-    "imdbId": "tt19817196"
-  },
-  {
-    "title": "Nu mă uita",
-    "year": 2009,
-    "imdbId": "tt1490905"
-  },
-  {
     "title": "Ryna",
     "year": 2005,
     "imdbId": "tt0449642"
+  },
+  {
+    "title": "Dogs",
+    "year": 2016,
+    "imdbId": "tt5088794"
+  },
+  {
+    "title": "Boogie",
+    "year": 2008,
+    "imdbId": "tt1132578"
+  },
+  {
+    "title": "Miracle",
+    "year": 2021,
+    "imdbId": "tt14355860"
   }
 ]

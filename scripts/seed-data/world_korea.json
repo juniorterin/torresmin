@@ -320,11 +320,6 @@
     "imdbId": "tt2942512"
   },
   {
-    "title": "The Novels of Elisa",
-    "year": 2008,
-    "imdbId": "tt1281333"
-  },
-  {
     "title": "Castaway on the Moon",
     "year": 2009,
     "imdbId": "tt1499666"
@@ -426,8 +421,8 @@
   },
   {
     "title": "A Quiet Dreamer",
-    "year": 2014,
-    "imdbId": "tt4020076"
+    "year": 2016,
+    "imdbId": "tt6066538"
   },
   {
     "title": "Bleak Night",
@@ -463,5 +458,15 @@
     "title": "The Night Owl",
     "year": 2022,
     "imdbId": "tt23871504"
+  },
+  {
+    "title": "The New World",
+    "year": 2013,
+    "imdbId": "tt2625030"
+  },
+  {
+    "title": "Cobweb",
+    "year": 2023,
+    "imdbId": "tt21254598"
   }
 ]
