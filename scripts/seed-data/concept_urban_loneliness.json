@@ -458,13 +458,5 @@
     "title": "American Honey",
     "year": 2016,
     "imdbId": "tt3734620"
-  },
-  {"title": "Shame", "year": 2011, "imdbId": "tt1723811"},
-  {"title": "Her", "year": 2013, "imdbId": "tt1798709"},
-  {"title": "A Ghost Story", "year": 2017, "imdbId": "tt6265828"},
-  {"title": "An Elephant Sitting Still", "year": 2018, "imdbId": "tt7456730"},
-  {"title": "Short Term 12", "year": 2013, "imdbId": "tt2370248"},
-  {"title": "Fish Tank", "year": 2009, "imdbId": "tt1232776"},
-  {"title": "Half Nelson", "year": 2006, "imdbId": "tt0468489"},
-  {"title": "Goodbye Solo", "year": 2008, "imdbId": "tt1168110"}
+  }
 ]

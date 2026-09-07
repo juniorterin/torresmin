@@ -413,22 +413,5 @@
     "title": "Distant",
     "year": 2002,
     "imdbId": "tt0347200"
-  },
-  {"title": "Come and See", "year": 1985, "imdbId": "tt0091251"},
-  {"title": "Andrei Rublev", "year": 1966, "imdbId": "tt0060107"},
-  {"title": "Sansho the Bailiff", "year": 1954, "imdbId": "tt0047396"},
-  {"title": "Gate of Hell", "year": 1953, "imdbId": "tt0045818"},
-  {"title": "Yaaba", "year": 1989, "imdbId": "tt0098644"},
-  {"title": "Moolaade", "year": 2004, "imdbId": "tt0383076"},
-  {"title": "Headhunters", "year": 2011, "imdbId": "tt1614154"},
-  {"title": "The Hunt", "year": 2012, "imdbId": "tt2106476"},
-  {"title": "The Celebration", "year": 1998, "imdbId": "tt0154021"},
-  {"title": "Troll Hunter", "year": 2010, "imdbId": "tt1740707"},
-  {"title": "The Death of Mr. Lazarescu", "year": 2005, "imdbId": "tt0456016"},
-  {"title": "Harakiri", "year": 1962, "imdbId": "tt0056058"},
-  {"title": "Beanpole", "year": 2019, "imdbId": "tt9570172"},
-  {"title": "Bad Luck Banging", "year": 2021, "imdbId": "tt13578922"},
-  {"title": "The Human Condition", "year": 1959, "imdbId": "tt0052787"},
-  {"title": "The Life of Oharu", "year": 1952, "imdbId": "tt0044710"},
-  {"title": "Force Majeure", "year": 2014, "imdbId": "tt2534380"}
+  }
 ]

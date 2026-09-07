@@ -1,105 +1,332 @@
 [
-  { "title": "The Eclipse", "year": 1962, "imdbId": "tt0055884" },
-  { "title": "The Leopard", "year": 1963, "imdbId": "tt0057091" },
-  { "title": "The Umbrellas of Cherbourg", "year": 1964, "imdbId": "tt0058450" },
-  { "title": "Kwaidan", "year": 1965, "imdbId": "tt0058279" },
-  { "title": "Alfie", "year": 1966, "imdbId": "tt0060086" },
-  { "title": "Weekend", "year": 1967, "imdbId": "tt0062454" },
-  { "title": "Z", "year": 1969, "imdbId": "tt0065507" },
-  { "title": "The Go-Between", "year": 1971, "imdbId": "tt0067140" },
-  { "title": "The Working Class Goes to Heaven", "year": 1972, "imdbId": "tt0069555" },
-  { "title": "The Mattei Affair", "year": 1972, "imdbId": "tt0068218" },
-  { "title": "Distant Thunder", "year": 1973, "imdbId": "tt0069921" },
-  { "title": "Every Man for Himself and God Against All", "year": 1975, "imdbId": "tt0071402" },
-  { "title": "Cria Cuervos", "year": 1976, "imdbId": "tt0074572" },
-  { "title": "Providence", "year": 1977, "imdbId": "tt0076445" },
-  { "title": "Bye Bye Monkey", "year": 1978, "imdbId": "tt0077264" },
-  { "title": "The Tin Drum", "year": 1979, "imdbId": "tt0079817" },
-  { "title": "Mon oncle d'Amerique", "year": 1980, "imdbId": "tt0081375" },
-  { "title": "Light Years Away", "year": 1981, "imdbId": "tt0082598" },
-  { "title": "The Night of the Shooting Stars", "year": 1982, "imdbId": "tt0084370" },
-  { "title": "Monty Python's The Meaning of Life", "year": 1983, "imdbId": "tt0085959" },
-  { "title": "Swann in Love", "year": 1984, "imdbId": "tt0087933" },
-  { "title": "Colonel Redl", "year": 1985, "imdbId": "tt0088952" },
-  { "title": "Therese", "year": 1986, "imdbId": "tt0092087" },
-  { "title": "Yeelen", "year": 1987, "imdbId": "tt0094230" },
-  { "title": "A World Apart", "year": 1988, "imdbId": "tt0096412" },
-  { "title": "Too Beautiful for You", "year": 1989, "imdbId": "tt0098665" },
-  { "title": "The Godfather Part III", "year": 1990, "imdbId": "tt0099674" },
-  { "title": "Europa", "year": 1991, "imdbId": "tt0101829" },
-  { "title": "Il Ladro di bambini", "year": 1992, "imdbId": "tt0104508" },
-  { "title": "Faraway, So Close!", "year": 1993, "imdbId": "tt0106983" },
-  { "title": "To Live", "year": 1994, "imdbId": "tt0111979" },
-  { "title": "Three Colors: Red", "year": 1994, "imdbId": "tt0111495" },
-  { "title": "Don't Forget You're Going to Die", "year": 1995, "imdbId": "tt0109791" },
-  { "title": "Breaking the Waves", "year": 1996, "imdbId": "tt0114782" },
-  { "title": "Western", "year": 1997, "imdbId": "tt0120450" },
-  { "title": "Happiness", "year": 1998, "imdbId": "tt0147478" },
-  { "title": "All About My Mother", "year": 1999, "imdbId": "tt0185125" },
-  { "title": "Devils on the Doorstep", "year": 2000, "imdbId": "tt0245929" },
-  { "title": "The Piano Teacher", "year": 2001, "imdbId": "tt0254686" },
-  { "title": "Divine Intervention", "year": 2002, "imdbId": "tt0318451" },
-  { "title": "Oldboy", "year": 2003, "imdbId": "tt0364569" },
-  { "title": "Brokeback Mountain", "year": 2005, "imdbId": "tt0388795" },
-  { "title": "Cache", "year": 2005, "imdbId": "tt0387898" },
-  { "title": "Broken Flowers", "year": 2005, "imdbId": "tt0412019" },
-  { "title": "Flanders", "year": 2006, "imdbId": "tt0490178" },
-  { "title": "Silent Light", "year": 2007, "imdbId": "tt0804452" },
-  { "title": "Il Divo", "year": 2008, "imdbId": "tt1082473" },
-  { "title": "The Wrestler", "year": 2008, "imdbId": "tt1125849" },
-  { "title": "A Prophet", "year": 2009, "imdbId": "tt1235166" },
-  { "title": "The White Ribbon", "year": 2009, "imdbId": "tt1149362" },
-  { "title": "Antichrist", "year": 2009, "imdbId": "tt0870984" },
-  { "title": "Dogtooth", "year": 2009, "imdbId": "tt1379182" },
-  { "title": "Of Gods and Men", "year": 2010, "imdbId": "tt1588337" },
-  { "title": "Uncle Boonmee Who Can Recall His Past Lives", "year": 2010, "imdbId": "tt1588895" },
-  { "title": "The Kid with a Bike", "year": 2011, "imdbId": "tt1827405" },
-  { "title": "The Artist", "year": 2011, "imdbId": "tt1655442" },
-  { "title": "The Tree of Life", "year": 2011, "imdbId": "tt0478304" },
-  { "title": "Reality", "year": 2012, "imdbId": "tt1710378" },
-  { "title": "Amour", "year": 2012, "imdbId": "tt1602620" },
-  { "title": "Nebraska", "year": 2013, "imdbId": "tt1821549" },
-  { "title": "Blue Is the Warmest Colour", "year": 2013, "imdbId": "tt2278871" },
-  { "title": "The Wonders", "year": 2014, "imdbId": "tt3148830" },
-  { "title": "Winter Sleep", "year": 2014, "imdbId": "tt2758880" },
-  { "title": "Son of Saul", "year": 2015, "imdbId": "tt3808342" },
-  { "title": "Dheepan", "year": 2015, "imdbId": "tt4082068" },
-  { "title": "From the Land of the Moon", "year": 2016, "imdbId": "tt5052700" },
-  { "title": "Loving", "year": 2016, "imdbId": "tt4669986" },
-  { "title": "I, Daniel Blake", "year": 2016, "imdbId": "tt5168192" },
-  { "title": "120 Beats per Minute", "year": 2017, "imdbId": "tt6374940" },
-  { "title": "The Square", "year": 2017, "imdbId": "tt4995790" },
-  { "title": "BlacKkKlansman", "year": 2018, "imdbId": "tt7349662" },
-  { "title": "The Favourite", "year": 2018, "imdbId": "tt5765844" },
-  { "title": "Shoplifters", "year": 2018, "imdbId": "tt8075192" },
-  { "title": "Portrait of a Lady on Fire", "year": 2019, "imdbId": "tt8613070" },
-  { "title": "Atlantics", "year": 2019, "imdbId": "tt8579228" },
-  { "title": "Once Upon a Time in Hollywood", "year": 2019, "imdbId": "tt7131622" },
-  { "title": "Pain and Glory", "year": 2019, "imdbId": "tt8291806" },
-  { "title": "Parasite", "year": 2019, "imdbId": "tt6751668" },
-  { "title": "Titane", "year": 2021, "imdbId": "tt10944760" },
-  { "title": "A Hero", "year": 2021, "imdbId": "tt14138650" },
-  { "title": "Compartment No. 6", "year": 2021, "imdbId": "tt13875522" },
-  { "title": "Drive My Car", "year": 2021, "imdbId": "tt14039582" },
-  { "title": "Memoria", "year": 2021, "imdbId": "tt9199942" },
-  { "title": "Triangle of Sadness", "year": 2022, "imdbId": "tt7322224" },
-  { "title": "Stars at Noon", "year": 2022, "imdbId": "tt13764256" },
-  { "title": "Close", "year": 2022, "imdbId": "tt15271076" },
-  { "title": "EO", "year": 2022, "imdbId": "tt13622970" },
-  { "title": "Anatomy of a Fall", "year": 2023, "imdbId": "tt17009710" },
-  { "title": "The Zone of Interest", "year": 2023, "imdbId": "tt7160372" },
-  { "title": "Monster", "year": 2023, "imdbId": "tt21082748" },
-  { "title": "Anora", "year": 2024, "imdbId": "tt28607951" },
-  { "title": "All We Imagine as Light", "year": 2024, "imdbId": "tt21067398" },
-  { "title": "The Substance", "year": 2024, "imdbId": "tt17526714" },
-  { "title": "4 Months, 3 Weeks and 2 Days", "year": 2007, "imdbId": "tt1032846" },
-  { "title": "The Wind That Shakes the Barley", "year": 2006, "imdbId": "tt0460989" },
-  { "title": "L'Enfant", "year": 2005, "imdbId": "tt0432291" },
-  { "title": "Fahrenheit 9/11", "year": 2004, "imdbId": "tt0361596" },
-  { "title": "Elephant", "year": 2003, "imdbId": "tt0363978" },
-  { "title": "The Pianist", "year": 2002, "imdbId": "tt0253474" },
-  { "title": "The Son's Room", "year": 2001, "imdbId": "tt0268378" },
-  { "title": "Dancer in the Dark", "year": 2000, "imdbId": "tt0168629" },
-  { "title": "Rosetta", "year": 1999, "imdbId": "tt0200071" },
-  { "title": "Eternity and a Day", "year": 1998, "imdbId": "tt0156794" }
+  {
+    "title": "Accident",
+    "year": 1967,
+    "imdbId": "tt0061328"
+  },
+  {
+    "title": "I Even Met Happy Gypsies",
+    "year": 1967,
+    "imdbId": "tt0062277"
+  },
+  {
+    "title": "Adalen 31",
+    "year": 1969,
+    "imdbId": "tt0065261"
+  },
+  {
+    "title": "Investigation of a Citizen Above Suspicion",
+    "year": 1970,
+    "imdbId": "tt0065889"
+  },
+  {
+    "title": "Johnny Got His Gun",
+    "year": 1971,
+    "imdbId": "tt0067277"
+  },
+  {
+    "title": "Taking Off",
+    "year": 1971,
+    "imdbId": "tt0067820"
+  },
+  {
+    "title": "Solaris",
+    "year": 1972,
+    "imdbId": "tt0069293"
+  },
+  {
+    "title": "The Mother and the Whore",
+    "year": 1973,
+    "imdbId": "tt0070359"
+  },
+  {
+    "title": "Arabian Nights",
+    "year": 1974,
+    "imdbId": "tt0071502"
+  },
+  {
+    "title": "The Enigma of Kaspar Hauser",
+    "year": 1975,
+    "imdbId": "tt0071691"
+  },
+  {
+    "title": "Cria Cuervos",
+    "year": 1976,
+    "imdbId": "tt0074572"
+  },
+  {
+    "title": "The Marquise of O",
+    "year": 1976,
+    "imdbId": "tt0074870"
+  },
+  {
+    "title": "Bye Bye Monkey",
+    "year": 1978,
+    "imdbId": "tt0077264"
+  },
+  {
+    "title": "The Shout",
+    "year": 1978,
+    "imdbId": "tt0078259"
+  },
+  {
+    "title": "Siberiade",
+    "year": 1979,
+    "imdbId": "tt0079907"
+  },
+  {
+    "title": "Mon oncle d'Amerique",
+    "year": 1980,
+    "imdbId": "tt0081375"
+  },
+  {
+    "title": "Light Years Away",
+    "year": 1981,
+    "imdbId": "tt0082598"
+  },
+  {
+    "title": "The Night of the Shooting Stars",
+    "year": 1982,
+    "imdbId": "tt0084370"
+  },
+  {
+    "title": "Monty Python's The Meaning of Life",
+    "year": 1983,
+    "imdbId": "tt0085959"
+  },
+  {
+    "title": "Diary for My Children",
+    "year": 1984,
+    "imdbId": "tt0084388"
+  },
+  {
+    "title": "Birdy",
+    "year": 1985,
+    "imdbId": "tt0086969"
+  },
+  {
+    "title": "The Sacrifice",
+    "year": 1986,
+    "imdbId": "tt0091670"
+  },
+  {
+    "title": "Repentance",
+    "year": 1987,
+    "imdbId": "tt0093754"
+  },
+  {
+    "title": "A World Apart",
+    "year": 1988,
+    "imdbId": "tt0096412"
+  },
+  {
+    "title": "Cinema Paradiso",
+    "year": 1989,
+    "imdbId": "tt0095765"
+  },
+  {
+    "title": "Too Beautiful for You",
+    "year": 1989,
+    "imdbId": "tt0098665"
+  },
+  {
+    "title": "The Sting of Death",
+    "year": 1990,
+    "imdbId": "tt0131012"
+  },
+  {
+    "title": "Tilai",
+    "year": 1990,
+    "imdbId": "tt0100784"
+  },
+  {
+    "title": "La Belle Noiseuse",
+    "year": 1991,
+    "imdbId": "tt0101428"
+  },
+  {
+    "title": "The Stolen Children",
+    "year": 1992,
+    "imdbId": "tt0104508"
+  },
+  {
+    "title": "Faraway, So Close!",
+    "year": 1993,
+    "imdbId": "tt0106983"
+  },
+  {
+    "title": "Burnt by the Sun",
+    "year": 1994,
+    "imdbId": "tt0111579"
+  },
+  {
+    "title": "To Live",
+    "year": 1994,
+    "imdbId": "tt0110081"
+  },
+  {
+    "title": "Ulysses' Gaze",
+    "year": 1995,
+    "imdbId": "tt0114863"
+  },
+  {
+    "title": "Breaking the Waves",
+    "year": 1996,
+    "imdbId": "tt0115751"
+  },
+  {
+    "title": "The Sweet Hereafter",
+    "year": 1997,
+    "imdbId": "tt0120255"
+  },
+  {
+    "title": "Life Is Beautiful",
+    "year": 1998,
+    "imdbId": "tt0118799"
+  },
+  {
+    "title": "Humanite",
+    "year": 1999,
+    "imdbId": "tt0197569"
+  },
+  {
+    "title": "Devils on the Doorstep",
+    "year": 2000,
+    "imdbId": "tt0245929"
+  },
+  {
+    "title": "The Piano Teacher",
+    "year": 2001,
+    "imdbId": "tt0254686"
+  },
+  {
+    "title": "The Man Without a Past",
+    "year": 2002,
+    "imdbId": "tt0311519"
+  },
+  {
+    "title": "Uzak",
+    "year": 2003,
+    "imdbId": "tt0346094"
+  },
+  {
+    "title": "Oldboy",
+    "year": 2004,
+    "imdbId": "tt0364569"
+  },
+  {
+    "title": "Broken Flowers",
+    "year": 2005,
+    "imdbId": "tt0412019"
+  },
+  {
+    "title": "Flanders",
+    "year": 2006,
+    "imdbId": "tt0490178"
+  },
+  {
+    "title": "The Mourning Forest",
+    "year": 2007,
+    "imdbId": "tt1016205"
+  },
+  {
+    "title": "Gomorrah",
+    "year": 2008,
+    "imdbId": "tt0929425"
+  },
+  {
+    "title": "A Prophet",
+    "year": 2009,
+    "imdbId": "tt1235166"
+  },
+  {
+    "title": "Of Gods and Men",
+    "year": 2010,
+    "imdbId": "tt1588337"
+  },
+  {
+    "title": "The Kid with a Bike",
+    "year": 2011,
+    "imdbId": "tt1827405"
+  },
+  {
+    "title": "Once Upon a Time in Anatolia",
+    "year": 2011,
+    "imdbId": "tt1827487"
+  },
+  {
+    "title": "Reality",
+    "year": 2012,
+    "imdbId": "tt1710378"
+  },
+  {
+    "title": "Inside Llewyn Davis",
+    "year": 2013,
+    "imdbId": "tt2042568"
+  },
+  {
+    "title": "The Wonders",
+    "year": 2014,
+    "imdbId": "tt3148830"
+  },
+  {
+    "title": "Son of Saul",
+    "year": 2015,
+    "imdbId": "tt3808342"
+  },
+  {
+    "title": "It's Only the End of the World",
+    "year": 2016,
+    "imdbId": "tt4645368"
+  },
+  {
+    "title": "120 Beats per Minute",
+    "year": 2017,
+    "imdbId": "tt6374940"
+  },
+  {
+    "title": "BlacKkKlansman",
+    "year": 2018,
+    "imdbId": "tt7349662"
+  },
+  {
+    "title": "Atlantics",
+    "year": 2019,
+    "imdbId": "tt8579228"
+  },
+  {
+    "title": "Compartment No. 6",
+    "year": 2021,
+    "imdbId": "tt13875522"
+  },
+  {
+    "title": "A Hero",
+    "year": 2021,
+    "imdbId": "tt14138650"
+  },
+  {
+    "title": "Close",
+    "year": 2022,
+    "imdbId": "tt15271076"
+  },
+  {
+    "title": "Stars at Noon",
+    "year": 2022,
+    "imdbId": "tt13764256"
+  },
+  {
+    "title": "The Zone of Interest",
+    "year": 2023,
+    "imdbId": "tt7160372"
+  },
+  {
+    "title": "All We Imagine as Light",
+    "year": 2024,
+    "imdbId": "tt21067398"
+  },
+  {
+    "title": "Sentimental Value",
+    "year": 2025,
+    "imdbId": "tt27714581"
+  }
 ]

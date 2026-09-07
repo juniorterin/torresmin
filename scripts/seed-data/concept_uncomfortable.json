@@ -468,11 +468,5 @@
     "title": "Platform",
     "year": 2000,
     "imdbId": "tt0250456"
-  },
-  {"title": "Happiness", "year": 1998, "imdbId": "tt0147612"},
-  {"title": "Hard Candy", "year": 2005, "imdbId": "tt0424136"},
-  {"title": "Mysterious Skin", "year": 2004, "imdbId": "tt0370986"},
-  {"title": "Capernaum", "year": 2018, "imdbId": "tt8267604"},
-  {"title": "Atlantics", "year": 2019, "imdbId": "tt10649120"},
-  {"title": "The Past", "year": 2013, "imdbId": "tt2347602"}
+  }
 ]

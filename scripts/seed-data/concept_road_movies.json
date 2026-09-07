@@ -402,7 +402,7 @@
   {
     "title": "Wind River",
     "year": 2017,
-    "imdbId": "tt5effectiveness"
+    "imdbId": "tt5362988"
   },
   {
     "title": "Leave No Trace",
@@ -453,14 +453,5 @@
     "title": "Interstate 60",
     "year": 2002,
     "imdbId": "tt0165832"
-  },
-  {"title": "Duel", "year": 1971, "imdbId": "tt0067023"},
-  {"title": "Scarecrow", "year": 1973, "imdbId": "tt0070564"},
-  {"title": "Harry and Tonto", "year": 1974, "imdbId": "tt0071540"},
-  {"title": "Boxcar Bertha", "year": 1972, "imdbId": "tt0068235"},
-  {"title": "Electra Glide in Blue", "year": 1973, "imdbId": "tt0069902"},
-  {"title": "It Happened One Night", "year": 1934, "imdbId": "tt0025316"},
-  {"title": "Thunderbolt and Lightfoot", "year": 1974, "imdbId": "tt0072288"},
-  {"title": "Locke", "year": 2013, "imdbId": "tt2692904"},
-  {"title": "Night on Earth", "year": 1991, "imdbId": "tt0102536"}
+  }
 ]

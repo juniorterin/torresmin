@@ -187,7 +187,7 @@
   {
     "year": 1988,
     "title": "Pelle the Conqueror",
-    "imdbId": "tt0095765"
+    "imdbId": "tt0093713"
   },
   {
     "year": 1987,
@@ -280,11 +280,6 @@
     "imdbId": "tt0070172"
   },
   {
-    "year": 1972,
-    "title": "Slaughterhouse-Five",
-    "imdbId": "tt0069280"
-  },
-  {
     "year": 1971,
     "title": "The Go-Between",
     "imdbId": "tt0067140"
@@ -373,5 +368,20 @@
     "year": 1955,
     "title": "Marty",
     "imdbId": "tt0048356"
+  },
+  {
+    "title": "The Working Class Goes to Heaven",
+    "year": 1971,
+    "imdbId": "tt0066919"
+  },
+  {
+    "title": "The Mattei Affair",
+    "year": 1972,
+    "imdbId": "tt0068346"
+  },
+  {
+    "title": "The Tin Drum",
+    "year": 1979,
+    "imdbId": "tt0078875"
   }
 ]
