@@ -5,6 +5,7 @@ const { rc } = require("../cache");
 const { normalizeImdbId } = require("../scoring");
 const { enrichMetaPtBr } = require("../metadata");
 const { getCatalog } = require("../catalogs");
+const { getMetas } = require("../metaStore");
 const { isPtBrRequest } = require("../routeHelpers");
 
 const router = express.Router();
@@ -89,7 +90,15 @@ router.get("/:userConfig/catalog/:type/:id.json", async (req, res) => {
     }
 
     if (!metas) {
+      // Metadados gravados por scripts/buildMetaStore.js. Vindo daqui, montar o
+      // catálogo não toca a rede — que é o ponto: os 504 esporádicos do
+      // Cinemeta deixam de derrubar filmes da home. Só os ids ainda não
+      // gravados caem no caminho antigo, logo abaixo.
+      const stored = await getMetas(catalog.items.map(i => i.imdbId)).catch(() => new Map());
+
       metas = (await mapLimit(catalog.items, META_CONCURRENCY, async ({ imdbId }) => {
+        const pronto = stored.get(imdbId);
+        if (pronto && pronto.name) return pronto;
         try {
           const meta = await fetchMeta(type, imdbId);
           if (!meta) return null;
