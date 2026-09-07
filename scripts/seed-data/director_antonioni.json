@@ -1,12 +1,52 @@
 [
-  {"title": "L'Avventura", "year": 1960, "imdbId": "tt0053619"},
-  {"title": "La Notte", "year": 1961, "imdbId": "tt0055198"},
-  {"title": "L'Eclisse", "year": 1962, "imdbId": "tt0056736"},
-  {"title": "Blow-Up", "year": 1966, "imdbId": "tt0060176"},
-  {"title": "The Passenger", "year": 1975, "imdbId": "tt0073580"},
-  {"title": "Red Desert", "year": 1964, "imdbId": "tt0058095"},
-  {"title": "Zabriskie Point", "year": 1970, "imdbId": "tt0066601"},
-  {"title": "Identification of a Woman", "year": 1982, "imdbId": "tt0084137"},
-  {"title": "Beyond the Clouds", "year": 1995, "imdbId": "tt0113032"},
-  {"title": "Cronaca di un amore", "year": 1950, "imdbId": "tt0042358"}
+  {
+    "title": "L'Avventura",
+    "year": 1960,
+    "imdbId": "tt0053619"
+  },
+  {
+    "title": "La Notte",
+    "year": 1961,
+    "imdbId": "tt0054130"
+  },
+  {
+    "title": "L'Eclisse",
+    "year": 1962,
+    "imdbId": "tt0056736"
+  },
+  {
+    "title": "Blow-Up",
+    "year": 1966,
+    "imdbId": "tt0060176"
+  },
+  {
+    "title": "The Passenger",
+    "year": 1975,
+    "imdbId": "tt0073580"
+  },
+  {
+    "title": "Red Desert",
+    "year": 1964,
+    "imdbId": "tt0058003"
+  },
+  {
+    "title": "Zabriskie Point",
+    "year": 1970,
+    "imdbId": "tt0066601"
+  },
+  {
+    "title": "Identification of a Woman",
+    "year": 1982,
+    "imdbId": "tt0084116"
+  },
+  {
+    "title": "Beyond the Clouds",
+    "year": 1995,
+    "imdbId": "tt0114086"
+  },
+  {
+    "title": "Cronaca di un amore",
+    "year": 1950,
+    "imdbId": "tt0042358"
+  }
 ]

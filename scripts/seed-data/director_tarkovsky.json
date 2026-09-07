@@ -1,9 +1,37 @@
 [
-  {"title": "Ivan's Childhood", "year": 1962, "imdbId": "tt0056148"},
-  {"title": "Andrei Rublev", "year": 1966, "imdbId": "tt0060107"},
-  {"title": "Solaris", "year": 1972, "imdbId": "tt0069293"},
-  {"title": "Mirror", "year": 1975, "imdbId": "tt0072443"},
-  {"title": "Stalker", "year": 1979, "imdbId": "tt0079944"},
-  {"title": "Nostalghia", "year": 1983, "imdbId": "tt0086022"},
-  {"title": "The Sacrifice", "year": 1986, "imdbId": "tt0091670"}
+  {
+    "title": "Ivan's Childhood",
+    "year": 1962,
+    "imdbId": "tt0056111"
+  },
+  {
+    "title": "Andrei Rublev",
+    "year": 1966,
+    "imdbId": "tt0060107"
+  },
+  {
+    "title": "Solaris",
+    "year": 1972,
+    "imdbId": "tt0069293"
+  },
+  {
+    "title": "Mirror",
+    "year": 1975,
+    "imdbId": "tt0072443"
+  },
+  {
+    "title": "Stalker",
+    "year": 1979,
+    "imdbId": "tt0079944"
+  },
+  {
+    "title": "Nostalghia",
+    "year": 1983,
+    "imdbId": "tt0086022"
+  },
+  {
+    "title": "The Sacrifice",
+    "year": 1986,
+    "imdbId": "tt0091670"
+  }
 ]
