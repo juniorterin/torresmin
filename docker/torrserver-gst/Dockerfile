@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
       gstreamer1.0-tools \
       gstreamer1.0-plugins-base \
+      gstreamer1.0-plugins-base-apps \
       gstreamer1.0-plugins-good \
       gstreamer1.0-plugins-bad \
       gstreamer1.0-plugins-ugly \
@@ -29,6 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       gstreamer1.0-vaapi \
       i965-va-driver \
       vainfo \
+      ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Pinned to the release tag currently in use — bump deliberately when
