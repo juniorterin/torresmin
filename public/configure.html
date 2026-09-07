@@ -1397,7 +1397,7 @@ function renderCatalogList() {
   state.catalogs.forEach((cat, i) => {
     const on = state.selectedCatalogIds.has(cat.id);
     const el = document.createElement("div");
-    el.className = "cat-card" + (on ? " on" : "");
+    el.className = "cat-card" + (on ? " sel" : "");
     el.innerHTML = `<div class="cat-name">${cat.name}</div><div class="cat-count">${cat.count} títulos</div>`;
     el.addEventListener("click", () => {
       if (state.selectedCatalogIds.has(cat.id)) state.selectedCatalogIds.delete(cat.id);
