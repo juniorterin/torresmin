@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TorrESMIN · Configuracao</title>
 <link rel="icon" href="/logo-pixel-static.png">
-<meta name="description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Streaming instantâneo sem esperar o download terminar, com seek de verdade, em TV, celular e até iPhone/iPad — onde torrent nativo não existe.">
+<meta name="description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Assista sem esperar o arquivo inteiro baixar, com seek de verdade, em TV, celular e até iPhone/iPad — onde torrent nativo não existe.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TorrESMIN">
 <meta property="og:title" content="TorrESMIN — Torrent: Entertainment Should Make Inclusion Natural">
-<meta property="og:description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Toca e dá seek enquanto ainda baixa — sem esperar o download terminar, sem fila nem limite compartilhado. Funciona liso em TV, celular e até iPhone/iPad, onde não existe cliente de torrent nativo.">
+<meta property="og:description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Toca e dá seek com o arquivo ainda pela metade — o servidor prioriza o trecho que você está assistindo. Funciona liso em TV, celular e até iPhone/iPad, onde não existe cliente de torrent nativo.">
 <meta property="og:image" content="/og/og-1200x630.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TorrESMIN — Torrent: Entertainment Should Make Inclusion Natural">
-<meta name="twitter:description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Toca e dá seek enquanto ainda baixa, em TV, celular e até iPhone/iPad.">
+<meta name="twitter:description" content="Addon de Stremio que transmite torrents baixados no seu próprio servidor. Toca e dá seek com o arquivo ainda pela metade, em TV, celular e até iPhone/iPad.">
 <meta name="twitter:image" content="/og/twitter-1200x675.jpg">
 <style>
 
@@ -480,7 +480,7 @@
   <!-- ── Passo 1: Início ── -->
   <section class="slide on" id="slide-home">
     <div class="topline" style="margin-bottom:16px;">
-      <p class="lede"><b>Addon de Stremio que transmite torrents baixados no seu próprio servidor.</b> Você assiste filmes e séries na TV, no celular ou no iPhone sem esperar download nenhum terminar — quem baixa é o servidor, o seu aparelho só recebe o vídeo pronto. Este passo a passo configura tudo em menos de 2 minutos.</p>
+      <p class="lede"><b>Addon de Stremio que transmite torrents baixados no seu próprio servidor.</b> Você assiste na TV, no celular ou no iPhone sem precisar esperar o download <em>terminar</em> — o vídeo já começa enquanto o servidor ainda baixa, e o seu aparelho só recebe a imagem pronta. Este passo a passo configura tudo em menos de 2 minutos.</p>
       <div class="acronym-row">
         <span class="acronym-chip" style="--chip-tilt:-2deg">Torrent</span>
         <span class="acronym-chip" style="--chip-tilt:1deg;background:#880000;">Entertainment</span>
@@ -500,10 +500,17 @@
           transmite de lá direto para a sua tela. Você procura um título normalmente e ele aparece pronto
           pra dar play, com as opções de qualidade (1080p, 4K, dublado, legendado) listadas.
         </p>
+        <p class="field-note" style="font-size:14px;color:#000080;margin-bottom:10px;">
+          A diferença é que <b>você não espera o arquivo inteiro baixar</b>: o servidor pega primeiro os
+          pedaços do trecho que está tocando, então dá pra assistir e pular pra qualquer ponto enquanto o
+          resto ainda vem. Quem faz o trabalho pesado é o servidor — o seu aparelho só recebe a imagem
+          pronta, e por isso até TV e iPhone funcionam bem.
+        </p>
         <p class="field-note" style="font-size:14px;color:#000080;">
-          A diferença é que <b>não existe espera</b>: o vídeo começa na hora e você pode avançar ou voltar pra
-          qualquer ponto, como no Netflix. Quem faz o trabalho pesado é um servidor particular —
-          o seu aparelho só recebe o vídeo pronto, então até TV e iPhone funcionam bem.
+          <b>Sendo honesto sobre a espera:</b> o começo depende de quantas pessoas estão compartilhando
+          aquele arquivo (os <em>seeds</em>). Com bastante gente, abre em segundos. Com pouca, pode demorar
+          ou engasgar — e aí não adianta servidor nenhum, é o arquivo que está mal servido. Na lista de
+          opções, o número de <b>seeders</b> aparece em cada resultado: prefira sempre os mais altos.
         </p>
       </div>
     </div>
@@ -514,7 +521,7 @@
         <div class="tutorial-list">
           <div class="tutorial-step">
             <div class="tutorial-num">▶️</div>
-            <div class="tutorial-text"><b>Começa na hora</b><span>Sem fila, sem "preparando seu arquivo", sem esperar download terminar. Clicou, tocou.</span></div>
+            <div class="tutorial-text"><b>Não espera baixar tudo</b><span>O servidor prioriza o trecho que está tocando, então você começa a assistir com o arquivo ainda pela metade. Quanto mais seeds o release tiver, mais rápido engata.</span></div>
           </div>
           <div class="tutorial-step">
             <div class="tutorial-num">⏩</div>
