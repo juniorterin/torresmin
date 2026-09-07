@@ -1,12 +1,3 @@
----
-title: TorrESMIN
-emoji: 🎬
-colorFrom: indigo
-colorTo: purple
-sdk: docker
-app_port: 7860
----
-
 <p align="center">
   <img src="public/og/torresmin-larga.jpg" alt="TorrESMIN" width="640">
 </p>
