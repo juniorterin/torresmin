@@ -17,7 +17,7 @@ services:
       - prowlarr-config:/config
 
   torrserver:
-    image: ghcr.io/yourok/torrserver:latest
+    build: ./docker/torrserver-gst
     restart: unless-stopped
     environment:
       - TS_HTTPAUTH=1
